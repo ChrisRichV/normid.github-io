@@ -1,0 +1,1801 @@
+<title>Õigusnormide kaart</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: four parts as one reading column; every term and § citation opens a click-popover. */
+:root{
+  --bg:#F2F4F6; --surface:#FFFFFF; --surface-2:#E9EDF1;
+  --ink:#15202B; --muted:#5A6875; --line:#D3DAE1;
+  --accent:#1E4E8C; --accent-soft:#DCE7F4;
+  --dep:#8A5A14;   --dep-soft:#F4E9D6;
+  --meta:#6B3F73;  --meta-soft:#EEE1F0;
+  --proc:#1F6F6B;  --proc-soft:#D9EDEB;
+  --hyp:#1B6B4C;   --hyp-soft:#D7EDE2;
+  --tag:#993070;   --tag-soft:#F5DCEB;
+  --ok:#1B6B4C;    --ok-soft:#D7EDE2;
+  --no:#9A3A2A;    --no-soft:#F6E0DA;
+  --shadow:rgba(20,32,43,.16);
+  --display:"Newsreader",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#12171D; --surface:#1A2129; --surface-2:#222B35;
+    --ink:#E4EAF1; --muted:#94A2B1; --line:#2C3742;
+    --accent:#86B0E0; --accent-soft:#1C2E44;
+    --dep:#D6A863;   --dep-soft:#362B18;
+    --meta:#C3A0CB;  --meta-soft:#2E2434;
+    --proc:#7CC4BE;  --proc-soft:#14302E;
+    --hyp:#78C9A2;   --hyp-soft:#123023;
+    --tag:#E38FBF;   --tag-soft:#33182A;
+    --ok:#78C9A2;    --ok-soft:#123023;
+    --no:#E8907C;    --no-soft:#341C16;
+    --shadow:rgba(0,0,0,.5);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12171D; --surface:#1A2129; --surface-2:#222B35;
+  --ink:#E4EAF1; --muted:#94A2B1; --line:#2C3742;
+  --accent:#86B0E0; --accent-soft:#1C2E44;
+  --dep:#D6A863;   --dep-soft:#362B18;
+  --meta:#C3A0CB;  --meta-soft:#2E2434;
+  --proc:#7CC4BE;  --proc-soft:#14302E;
+  --hyp:#78C9A2;   --hyp-soft:#123023;
+  --tag:#E38FBF;   --tag-soft:#33182A;
+  --ok:#78C9A2;    --ok-soft:#123023;
+  --no:#E8907C;    --no-soft:#341C16;
+  --shadow:rgba(0,0,0,.5);
+  color-scheme:dark;
+}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding-inline:18px;padding-block:30px 64px}
+h1,h2,h3{font-family:var(--display);font-weight:600;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.1;letter-spacing:-.015em}
+h2{font-size:clamp(20px,3.2vw,26px);line-height:1.22}
+h3{font-size:15.5px;font-family:var(--body);font-weight:600}
+p{margin:0}
+.lede{font-size:clamp(16px,2.2vw,18px);color:var(--muted);max-width:62ch;margin-top:14px}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+code{font-family:var(--mono);font-size:.88em}
+
+/* ── popover triggers ── */
+.tt{cursor:pointer;border-bottom:1px dotted var(--muted);transition:color .12s,border-color .12s}
+.tt:hover,.tt.open{color:var(--accent);border-bottom-color:var(--accent)}
+.tt:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+.tt.is-para{font-family:var(--mono);font-size:.88em;color:var(--accent);border-bottom-color:var(--accent);white-space:nowrap}
+.tt.is-para:hover,.tt.is-para.open{border-bottom-style:solid}
+text.tt{border:0;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:2px}
+text.tt:hover,text.tt.open{text-decoration-style:solid}
+@media (prefers-reduced-motion:reduce){.tt{transition:none}}
+
+#pop{position:fixed;z-index:80;max-width:min(390px,calc(100vw - 24px));width:max-content;
+  background:var(--surface);border:1px solid var(--line);border-radius:4px;
+  box-shadow:0 10px 30px var(--shadow);padding:0;font-size:13.5px;line-height:1.55;color:var(--ink)}
+#pop .ph{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;padding:12px 15px 0}
+#pop .pt{font-family:var(--body);font-weight:600;font-size:14.5px}
+#pop .pc{font-family:var(--mono);font-size:12.5px;color:var(--accent);letter-spacing:.02em}
+#pop .ps{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 6px;border-radius:2px;white-space:nowrap}
+#pop .ps.s-kontrollitud{background:var(--proc-soft);color:var(--proc)}
+#pop .ps.s-slaidid{background:var(--accent-soft);color:var(--accent)}
+#pop .ps.s-kokkuvote{background:var(--dep-soft);color:var(--dep)}
+#pop .pb{padding:9px 15px 14px}
+#pop .pb.quote{font-family:var(--display);font-size:14.5px;line-height:1.5}
+#pop .pn{border-top:1px solid var(--line);padding:10px 15px;font-size:12.5px;color:var(--muted);background:var(--surface-2);border-radius:0 0 3px 3px}
+#pop[hidden]{display:none}
+
+.hint{margin-top:18px;font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:baseline}
+.hint b{font-weight:500;color:var(--ink);border-bottom:1px dotted var(--muted)}
+
+/* sticky nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:-18px;padding-inline:18px;padding-block:9px;display:flex;gap:6px;flex-wrap:wrap}
+nav a{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:5px 9px;border:1px solid var(--line);border-radius:3px;background:var(--surface)}
+nav a:hover,nav a:focus-visible{color:var(--accent);border-color:var(--accent)}
+
+header{border-bottom:1px solid var(--line);padding-block:26px 30px}
+section{padding-block:34px;border-bottom:1px solid var(--line)}
+.part{padding-block:30px 6px;border-bottom:0}
+.part .bar{display:flex;align-items:baseline;gap:12px;border-top:3px solid var(--pc);padding-top:12px}
+.part .num{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--pc)}
+.part h2{font-size:clamp(23px,4vw,32px)}
+.part p{color:var(--muted);max-width:62ch;margin-top:8px}
+.sec-head{display:flex;flex-direction:column;gap:8px;max-width:64ch}
+.claim{color:var(--muted);max-width:62ch}
+.stack{display:flex;flex-direction:column;gap:20px}
+
+.kinds{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin-top:26px}
+.kind{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:15px 16px 17px;border-top:3px solid var(--k)}
+.kind .n{font-family:var(--mono);font-size:10.5px;color:var(--k);letter-spacing:.1em}
+.kind h3{margin:6px 0 5px}
+.kind p{font-size:13.5px;color:var(--muted);line-height:1.5}
+
+figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:20px 18px 16px}
+figure .scroller{overflow-x:auto}
+figure svg{display:block;width:100%;max-width:100%;height:auto;min-width:520px;color:var(--ink)}
+figcaption{margin-top:14px;padding-top:12px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);line-height:1.55}
+
+.formula{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.formula>div{background:var(--surface);padding:17px 18px}
+.formula .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.formula .f{font-family:var(--mono);font-size:19px;margin:9px 0 8px;letter-spacing:.06em}
+.formula p{font-size:13.5px;color:var(--muted);line-height:1.5}
+.formula .ex{display:block;font-size:11.5px;color:var(--muted);margin-top:9px}
+
+.fns{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.fn{background:var(--surface);padding:13px 15px}
+.fn b{display:block;font-size:13.5px}
+.fn span.d{display:block;font-size:12.5px;color:var(--muted);line-height:1.45;margin-top:3px}
+.fn .c{display:block;margin-top:7px;font-size:11.5px}
+
+.picker{display:flex;flex-direction:column;gap:12px}
+.pgrp{display:grid;grid-template-columns:minmax(0,132px) minmax(0,1fr);gap:10px;align-items:start}
+.pgrp .gl{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding-top:9px}
+.pgrp .gb{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+@media (max-width:620px){.pgrp{grid-template-columns:minmax(0,1fr);gap:5px}.pgrp .gl{padding-top:2px}}
+.picker button{font-family:var(--body);font-size:13px;font-weight:500;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:8px 12px;cursor:pointer;text-align:left;line-height:1.35}
+.picker button .pcc{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;opacity:.8}
+.picker button[aria-pressed="true"]{color:var(--accent);border-color:var(--accent);background:var(--accent-soft)}
+.picker button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.gloss{background:var(--surface-2);border-left:3px solid var(--accent);border-radius:0 3px 3px 0;padding:13px 15px;font-size:13.5px;line-height:1.55}
+.gloss .g-cite{display:block;margin-bottom:6px}
+.matrix{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.row{display:grid;grid-template-columns:minmax(0,190px) minmax(0,1fr);gap:1px;background:var(--line)}
+.row .ax{background:var(--surface-2);padding:11px 13px;font-size:12.5px;font-weight:500;min-width:0}
+.row .ax small{display:block;font-family:var(--mono);font-size:10px;color:var(--muted);font-weight:400;letter-spacing:.04em;margin-top:2px}
+.row .opts{background:var(--surface);padding:9px 12px;display:flex;flex-wrap:wrap;gap:7px;align-items:center;min-width:0}
+.chip{font-size:12.5px;padding:4px 10px;border:1px solid var(--line);border-radius:99px;color:var(--muted);white-space:nowrap;transition:background .14s,color .14s,border-color .14s}
+.chip.tt{border-bottom:1px solid var(--line)}
+.chip.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent);font-weight:600}
+.chip.on.dep{background:var(--dep-soft);border-color:var(--dep);color:var(--dep)}
+.na{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);opacity:.75;margin-left:auto}
+@media (prefers-reduced-motion:reduce){.chip{transition:none}}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--c,var(--accent));border-radius:0 3px 3px 0;padding:15px 16px}
+.card h3{color:var(--c,var(--accent))}
+.card p{font-size:13.5px;color:var(--muted);line-height:1.5;margin-top:6px}
+.card .ex{display:block;font-size:11.5px;color:var(--muted);margin-top:9px}
+.card .k{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+.steps{counter-reset:s;display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.step{background:var(--surface);padding:13px 16px 13px 50px;position:relative;font-size:13.5px}
+.step::before{counter-increment:s;content:counter(s);position:absolute;left:15px;top:13px;font-family:var(--mono);font-size:12px;color:var(--meta);border:1px solid var(--line);border-radius:50%;width:22px;height:22px;display:grid;place-items:center}
+.step b{display:block;margin-bottom:2px}
+.step span.d{color:var(--muted)}
+
+.tbl{width:100%;border-collapse:collapse;font-size:13px;background:var(--surface);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.tbl th,.tbl td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;min-width:0}
+.tbl thead th{background:var(--surface-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:400}
+.tbl tbody tr:last-child td{border-bottom:0}
+.tbl .fk{font-weight:500}
+.tblwrap{overflow-x:auto}
+.tbl caption{caption-side:bottom;text-align:left;font-size:13px;color:var(--muted);padding-top:11px;line-height:1.5}
+
+.rules{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.rule{display:grid;grid-template-columns:minmax(0,230px) minmax(0,150px) minmax(0,1fr);gap:1px;background:var(--line)}
+.rule>*{background:var(--surface);padding:12px 14px;font-size:13px;min-width:0}
+.rule .lat{background:var(--surface-2)}
+.rule .lat .tt{font-family:var(--mono);font-size:12px;color:var(--meta);border-bottom-color:var(--meta)}
+.rule .axn{color:var(--muted);font-size:12.5px}
+.rules .hd>*{background:var(--surface-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+.ops{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px}
+.op{background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:16px}
+.op .flow{font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.02em}
+.op h3{margin:7px 0 6px}
+.op p{font-size:13.5px;color:var(--muted);line-height:1.5}
+.op .ans{display:block;margin-top:9px;font-size:12.5px;color:var(--ink)}
+
+footer{margin-top:40px;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.55;max-width:66ch}
+
+/* ── värvisüsteem: üks värv = üks tähendus ── */
+mark.h,mark.t{padding:1px 3px;border-radius:2px;font-style:normal}
+mark.h{background:var(--hyp-soft);color:var(--hyp);box-shadow:inset 0 -2px 0 var(--hyp)}
+mark.t{background:var(--tag-soft);color:var(--tag);box-shadow:inset 0 -2px 0 var(--tag);font-weight:500}
+.kv{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;font-size:12.5px}
+.kv span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:3px;padding:5px 10px;background:var(--surface)}
+.kv i{width:12px;height:12px;border-radius:2px;display:inline-block;font-style:normal}
+.kv .sh{border-radius:50%}
+
+/* ── allikasildid ── */
+#pop .ps.s-ffail{background:var(--accent-soft);color:var(--accent)}
+#pop .ps.s-kontrollimata{background:var(--dep-soft);color:var(--dep)}
+
+/* ── vastuolu kõrvuti ── */
+.vv{border:1px solid var(--line);border-left:3px solid var(--dep);border-radius:0 3px 3px 0;background:var(--surface);overflow:hidden}
+.vv>.vh{background:var(--dep-soft);color:var(--dep);padding:9px 14px;font-size:12px;font-family:var(--mono);letter-spacing:.06em;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+.vv>.vh b{font-family:var(--body);font-weight:600;letter-spacing:0;font-size:13.5px}
+.vv .vg{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line)}
+.vv .vc{background:var(--surface);padding:13px 15px}
+.vv .vc .vl{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.vv .vc p{font-size:13.5px;line-height:1.5}
+.vv .vc ol,.vv .vc ul{margin:6px 0 0;padding-left:20px;font-size:13.5px;line-height:1.55}
+.vv .vf{padding:10px 15px;border-top:1px solid var(--line);background:var(--surface-2);font-size:12.5px;color:var(--muted);line-height:1.5}
+
+/* ── kontrollküsimused ── */
+.qa{margin-top:4px;border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--surface)}
+.qa>summary{cursor:pointer;padding:12px 15px;font-size:13.5px;font-weight:500;list-style:none;display:flex;gap:10px;align-items:flex-start}
+.qa>summary::-webkit-details-marker{display:none}
+.qa>summary::before{content:"?";font-family:var(--mono);font-size:11px;color:var(--meta);border:1px solid var(--line);border-radius:50%;width:20px;height:20px;min-width:20px;display:grid;place-items:center;margin-top:1px}
+.qa[open]>summary::before{content:"✓";color:var(--proc);border-color:var(--proc)}
+.qa>summary:hover{color:var(--meta)}
+.qa>summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.qa .ans{padding:0 15px 13px 45px;font-size:13.5px;color:var(--muted);line-height:1.55}
+.qaset{display:flex;flex-direction:column;gap:8px}
+.qaset .qh{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--meta)}
+
+/* ── klõpsatav tunnuste kontrollnimekiri ── */
+.chk{border:1px solid var(--line);border-radius:3px;background:var(--surface);overflow:hidden}
+.chk .ch{background:var(--surface-2);padding:11px 15px;font-size:12.5px;display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap}
+.chk .ch .cl{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.chk .cb{display:flex;flex-direction:column;gap:1px;background:var(--line)}
+.chk .ci{background:var(--surface);padding:11px 15px;display:flex;gap:11px;align-items:flex-start;cursor:pointer;font-size:13.5px;line-height:1.45;border:0;width:100%;text-align:left;font-family:var(--body);color:var(--ink)}
+.chk .ci:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.chk .bx{width:19px;height:19px;min-width:19px;border:1.5px solid var(--line);border-radius:3px;display:grid;place-items:center;font-size:12px;color:transparent;margin-top:1px}
+.chk .ci[aria-pressed="true"] .bx{background:var(--hyp);border-color:var(--hyp);color:var(--bg)}
+.chk .ci[aria-pressed="true"] .bx::after{content:"✓";color:var(--bg);font-weight:700}
+.chk .ci .jn{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted);margin-left:auto;align-self:center;white-space:nowrap}
+.chk .cr{padding:13px 15px;border-top:1px solid var(--line);font-size:13.5px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.chk .cr .st{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:2px}
+.chk .cr.no .st{background:var(--dep-soft);color:var(--dep)}
+.chk .cr.yes .st{background:var(--tag-soft);color:var(--tag)}
+.chk .cr .rt{color:var(--muted);font-size:13px}
+
+/* ── norm kahe poolena ── */
+.nrm{border:1px solid var(--line);border-radius:3px;background:var(--surface);overflow:hidden}
+.nrm .nh{background:var(--surface-2);padding:9px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--muted);display:flex;gap:9px;align-items:baseline;flex-wrap:wrap}
+.nrm .nh b{font-family:var(--body);font-weight:600;font-size:13px;letter-spacing:0;color:var(--ink)}
+.nrm .rows{display:flex;flex-direction:column;gap:1px;background:var(--line)}
+.nrm .nr{display:grid;grid-template-columns:minmax(0,120px) minmax(0,1fr);gap:1px;background:var(--line)}
+.nrm .nr>.k{background:var(--surface);padding:12px 13px;font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;min-width:0}
+.nrm .nr>.v{background:var(--surface);padding:12px 15px;font-family:var(--display);font-size:15.5px;line-height:1.55;min-width:0}
+.nrm .nr.h>.k{color:var(--hyp)} .nrm .nr.h>.v{background:var(--hyp-soft);color:var(--hyp)}
+.nrm .nr.t>.k{color:var(--tag)} .nrm .nr.t>.v{background:var(--tag-soft);color:var(--tag)}
+.nrm .nf{padding:11px 14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted);line-height:1.5}
+@media (max-width:620px){.nrm .nr{grid-template-columns:minmax(0,1fr)}.nrm .nr>.k{padding-bottom:0;background:var(--surface)}}
+
+/* ── kahe normi ahel ── */
+.chain{display:flex;flex-direction:column;gap:0}
+.chain .lnk{display:flex;gap:11px;align-items:center;padding:12px 4px;font-size:13px;color:var(--muted);line-height:1.5}
+.chain .lnk .ar{font-family:var(--mono);color:var(--dep);font-size:17px;line-height:1}
+.chain .lnk b{color:var(--ink)}
+
+/* ── nimetuste võrdlus ── */
+.nmg{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.nmrow{display:grid;grid-template-columns:minmax(0,155px) minmax(0,1fr) minmax(0,1fr);gap:1px;background:var(--line)}
+.nmrow>*{background:var(--surface);padding:13px 15px;min-width:0}
+.nmk{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase}
+.nmk.h{color:var(--hyp);background:var(--hyp-soft)}
+.nmk.t{color:var(--tag);background:var(--tag-soft)}
+.nmc .nml{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.nmc b{font-size:14px}
+.nmc small{display:block;color:var(--muted);font-size:12.5px;line-height:1.45;margin-top:4px}
+@media (max-width:620px){.nmrow{grid-template-columns:minmax(0,1fr)}}
+
+/* ── mini-kaasused (valikvastused) ── */
+.ex{display:flex;flex-direction:column;gap:9px}
+.ex .exh{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--proc)}
+.exi{border:1px solid var(--line);border-radius:3px;background:var(--surface);overflow:hidden}
+.exi .exq{padding:13px 15px;font-size:13.5px;line-height:1.55}
+.exi .exq .qn{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-right:7px}
+.exi .exo{display:flex;flex-wrap:wrap;gap:7px;padding:0 15px 13px}
+.exi .exo button{font-family:var(--body);font-size:12.5px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:99px;padding:6px 13px;cursor:pointer;line-height:1.35;display:inline-flex;gap:6px;align-items:center}
+.exi .exo button:hover:not([disabled]){border-color:var(--accent);color:var(--accent)}
+.exi .exo button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.exi .exo button[disabled]{cursor:default}
+.exi .exo button.ok{background:var(--ok-soft);border-color:var(--ok);color:var(--ok);font-weight:600}
+.exi .exo button.ok::before{content:"✓"}
+.exi .exo button.no{background:var(--no-soft);border-color:var(--no);color:var(--no)}
+.exi .exo button.no::before{content:"✕"}
+.exi .exo button.dim{opacity:.45}
+.exi .exf{border-top:1px solid var(--line);background:var(--surface-2);padding:12px 15px;font-size:13px;line-height:1.55;color:var(--muted)}
+.exi .exf[hidden]{display:none}
+.exi .exf b{color:var(--ink)}
+
+/* ── normi lahtivõtmise harjutus ── */
+.split{border:1px solid var(--line);border-radius:3px;background:var(--surface);overflow:hidden}
+.split .sh{background:var(--surface-2);padding:11px 15px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:12.5px}
+.split .sh .sl{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.split .sb{padding:16px 16px 6px;font-family:var(--display);font-size:16px;line-height:1.75}
+.split .sp{cursor:pointer;border-bottom:1px dotted var(--muted);padding:2px 3px;border-radius:2px;transition:background .12s}
+.split .sp[data-pick="h"]{background:var(--hyp-soft);color:var(--hyp);border-bottom:2px solid var(--hyp)}
+.split .sp[data-pick="t"]{background:var(--tag-soft);color:var(--tag);border-bottom:2px solid var(--tag);font-weight:500}
+.split .sp.mark-ok{box-shadow:inset 0 0 0 1.5px var(--ok)}
+.split .sp.mark-no{box-shadow:inset 0 0 0 1.5px var(--no)}
+.split .sp:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.split .sf{padding:12px 16px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:10px}
+.split .sf button{font-family:var(--body);font-size:12.5px;padding:7px 14px;border-radius:3px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.split .sf button:hover{border-color:var(--accent);color:var(--accent)}
+.split .sf button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.split .sr{font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.split .sp{transition:none}}
+
+/* ── kaasused ── */
+.case{border:1px solid var(--line);border-radius:3px;background:var(--surface);overflow:hidden}
+.case .cah{background:var(--surface-2);padding:12px 16px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.case .cah .n{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;color:var(--proc)}
+.case .cah h3{font-size:15px}
+.case .cah .lvl{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:2px;padding:2px 7px;white-space:nowrap}
+.case .fab{padding:14px 16px;font-size:13.5px;line-height:1.6;border-bottom:1px solid var(--line)}
+.case .fab .fl{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+.case .stp{display:flex;flex-direction:column;gap:1px;background:var(--line)}
+.case .stp>div{background:var(--surface);padding:12px 16px;font-size:13.5px;line-height:1.55}
+.case .stp>div b{display:block;font-size:12.5px;color:var(--proc);font-family:var(--mono);letter-spacing:.05em;margin-bottom:4px;text-transform:uppercase}
+
+@media (max-width:620px){
+  nav{gap:4px;padding-block:7px}
+  nav a{font-size:10px;padding:4px 7px;letter-spacing:.05em}
+  .wrap{padding-block:22px 48px}
+  .case .cah .lvl{margin-left:0}
+  .chk .ci .jn{margin-left:0;align-self:flex-start;margin-top:2px}
+  .nrm .nr>.v{font-size:15px}
+  .split .sb{font-size:15px;line-height:1.85}
+  .row{grid-template-columns:minmax(0,1fr)}
+  .rule{grid-template-columns:minmax(0,1fr)}
+  .rules .hd{display:none}
+  .rule .axn::before{content:"Telg: ";font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+}
+</style>
+
+<div id="pop" hidden role="dialog" aria-label="Seletus"></div>
+
+<div class="wrap">
+
+<nav aria-label="Kaardi osad">
+  <a href="#norm">I · Norm</a>
+  <a href="#rakendamine">II · Rakendamine</a>
+  <a href="#tolgendamine">III · Tõlgendamine</a>
+  <a href="#meetod">IV · Meetod</a>
+  <a href="#kaasused">V · Kaasused</a>
+</nav>
+
+<header>
+  <span class="eyebrow">Normiõpetus · rakendamine · tõlgendamine</span>
+  <h1>Õigusnormide kaart</h1>
+  <p class="lede">Normid ei moodusta üht puud. Nende vahel on kolme eri laadi suhet, ja neid kolme segi ajades muutub kogu liigitus arusaamatuks. Iga jaotus allpool näitab, millist suhet ta kujutab.</p>
+
+  <p class="hint"><span>↘</span><span>Klõpsa <b>punktiiriga sõnal</b> — avaneb lihtne seletus. Klõpsa <span class="tt" data-pop="ps3">PS § 3</span> moodi paragrahviviitel — avaneb sätte tekst. Aken sulgub, kui klõpsad mujale või vajutad Esc.</span></p>
+
+  <div class="kv" aria-label="Värvide tähendus">
+    <span><i style="background:var(--hyp)"></i> <mark class="h">hüpotees</mark> — faktilise koosseisu tunnused, „kui“</span>
+    <span><i style="background:var(--tag)"></i> <mark class="t">õiguslik tagajärg</mark> — „siis“</span>
+    <span><i class="sh" style="background:var(--dep)"></i> materjalides kaks versiooni</span>
+  </div>
+  <p class="claim" style="font-size:12.5px;margin-top:10px">Need kaks värvi tähendavad kogu lehel alati sama asja — ka tsiteeritud seadusetekstis hüpikakna sees. Värvi kõrval on alati ka sõna, nii et eristus ei sõltu ainult värvist.</p>
+
+  <div class="kinds">
+    <div class="kind" style="--k:var(--accent)">
+      <span class="n">01 · PÄRIS HIERARHIA</span>
+      <h3>Õigusjõud</h3>
+      <p>Madalam aste peab olema kooskõlas kõrgemaga. Ainus koht, kus „kuulub teise alla“ tähendab päris alluvust.</p>
+    </div>
+    <div class="kind" style="--k:var(--dep)">
+      <span class="n">02 · PÄRIS SÕLTUVUS</span>
+      <h3>Täielikkus</h3>
+      <p><span class="tt" data-pop="spetsnorm">Spetsialiseeritud norm</span> ei kohaldu iseseisvalt. Ta ripub <span class="tt" data-pop="taielik">täieliku normi</span> küljes ja teenindab seda.</p>
+    </div>
+    <div class="kind" style="--k:var(--meta)">
+      <span class="n">03 · MITTE HIERARHIA</span>
+      <h3>Paralleelsed teljed</h3>
+      <p>Enamik liigitusi on üksteisest sõltumatud teljed. Iga norm saab igal teljel korraga oma väärtuse.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════ OSA I ══════════ -->
+<div class="part" id="norm" style="--pc:var(--accent)">
+  <div class="bar"><span class="num">OSA I</span><h2>Norm</h2></div>
+  <p>Mis norm on, millest ta koosneb ja mille järgi teda liigitatakse.</p>
+</div>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Samm 1</span>
+    <h2>Üks norm koosneb kahest poolest</h2>
+    <p class="claim">Iga täielik õigusnorm ütleb kaks asja: <strong>millal</strong> ta kohaldub ja <strong>mis siis juhtub</strong>. Ei rohkem ega vähem. Kolm lihtsat näidet — loe need läbi ja vaata, kuidas värvid jagunevad.</p>
+  </div>
+
+  <div class="nrm">
+    <div class="nh"><b>Lühim võimalik norm</b><span class="tt" data-pop="ls7">LS § 7² lg 1</span></div>
+    <div class="rows">
+      <div class="nr h"><div class="k">Kui</div><div class="v">teed kahjustatakse ja risustatakse</div></div>
+      <div class="nr t"><div class="k">Siis</div><div class="v">on see keelatud</div></div>
+    </div>
+    <div class="nf">Terve norm on neli sõna pikk. Sellegipoolest on tal mõlemad pooled olemas — sellepärast ongi ta <span class="tt" data-pop="taielik">täielik norm</span>.</div>
+  </div>
+
+  <div class="nrm">
+    <div class="nh"><b>Sama asi vanglas</b><span class="tt" data-pop="vangs67">VangS § 67 lg 1</span></div>
+    <div class="rows">
+      <div class="nr h"><div class="k">Kui</div><div class="v">isik on kinnipeetav · on vanglas · tegu on vangla julgeoleku tagamisega</div></div>
+      <div class="nr t"><div class="k">Siis</div><div class="v">on ta kohustatud täitma vangla sisekorraeeskirju <em>ja</em> alluma vanglateenistuse ametnike seaduslikele korraldustele</div></div>
+    </div>
+    <div class="nf">Siin on „kui“-poolel kolm tunnust ja need on kõik vajalikud. „Siis“-poolel on kaks kohustust ja needki kehtivad korraga.</div>
+  </div>
+
+  <div class="nrm">
+    <div class="nh"><b>Norm, mille tagajärg on karistus</b><span class="tt" data-pop="ls201">LS § 201 lg 1</span></div>
+    <div class="rows">
+      <div class="nr h"><div class="k">Kui</div><div class="v">isik juhib mootorsõidukit <em>ja</em> tal puudub vastava kategooria juhtimisõigus</div></div>
+      <div class="nr t"><div class="k">Siis</div><div class="v">karistatakse rahatrahviga kuni 200 trahviühikut <em>või</em> arestiga</div></div>
+    </div>
+    <div class="nf">Ka karistusnorm on kaheosaline. Karistus ei ole <em>kolmas</em> element — ta on lihtsalt see, mis sellel normil „siis“-poolel seisab.</div>
+  </div>
+
+  <div class="qaset">
+    <span class="qh">Kontrolli ennast</span>
+    <details class="qa"><summary>Mitmest osast koosneb täielik õigusnorm?</summary>
+      <div class="ans">Kahest: faktilisest koosseisust ja õiguslikust tagajärjest. Normid on „kui …, siis“ struktuuriga.</div></details>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Samm 2</span>
+    <h2>Neil kahel poolel on kaks nimekomplekti</h2>
+    <p class="claim">Siin tekib enamik segadust. Kursuse materjalid kasutavad läbisegi kahte terminoloogiat, aga need ei ole eri asjad — nad on eri nimed samadele pooltele.</p>
+  </div>
+
+  <div class="nmg">
+    <div class="nmrow">
+      <div class="nmk h">Kui …</div>
+      <div class="nmc"><span class="nml">kaheosaline käsitlus</span><b>faktiline koosseis</b><small>ka „eeldused normis“ või „tingimused“</small></div>
+      <div class="nmc"><span class="nml">kolmeosaline käsitlus</span><b>hüpotees</b><small>tingimused, mille olemasolul tuleb käituda vastavalt normile</small></div>
+    </div>
+    <div class="nmrow">
+      <div class="nmk t">Siis …</div>
+      <div class="nmc"><span class="nml">kaheosaline käsitlus</span><b>õiguslik tagajärg</b><small>sama nimi mõlema rea kohta</small></div>
+      <div class="nmc"><span class="nml">kolmeosaline käsitlus</span><b>dispositsioon</b><small>käitumisnormis: mida isik peab, tohib või ei tohi teha</small></div>
+    </div>
+    <div class="nmrow">
+      <div class="nmk t">Vastasel juhul …</div>
+      <div class="nmc"><span class="nml">kaheosaline käsitlus</span><b>õiguslik tagajärg</b><small>sama nimi mis eelmisel real — sellepärast ongi see käsitlus „kaheosaline“</small></div>
+      <div class="nmc"><span class="nml">kolmeosaline käsitlus</span><b>sanktsioon</b><small>karistusnormis: riiklik sund, mida rakendatakse rikkumisel</small></div>
+    </div>
+  </div>
+
+  <p class="claim" style="font-size:13.5px">Kolmeosaline käsitlus lihtsalt <strong>jagab tagajärje kaheks</strong> — olenevalt sellest, kas norm ütleb, kuidas käituda, või ütleb, mis juhtub siis, kui nii ei käitutud. Kaheosaline käsitlus neid ei erista.</p>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Samm 3</span>
+    <h2>Kust tuleb siis kolmas element?</h2>
+    <p class="claim">Kõige tähtsam asi kogu selle teema juures: <strong>H, D ja S ei ole tavaliselt ühes paragrahvis.</strong> Hüpotees ja dispositsioon on ühes normis, sanktsioon teises. Kursuse enda näide vangistusseadusest näitab seda täpselt.</p>
+  </div>
+
+  <div class="chain">
+    <div class="nrm">
+      <div class="nh"><b>Norm 1 — käitumisnorm</b><span class="tt" data-pop="vangs67">VangS § 67 lg 1</span><span style="margin-left:auto;font-family:var(--mono);color:var(--accent)">H – D</span></div>
+      <div class="rows">
+        <div class="nr h"><div class="k">Kui · H</div><div class="v">kinnipeetav · vanglas · vangla julgeoleku tagamiseks</div></div>
+        <div class="nr t"><div class="k">Siis · D</div><div class="v">kohustatud täitma sisekorraeeskirju ja alluma ametnike seaduslikele korraldustele</div></div>
+      </div>
+      <div class="nf">See norm ütleb, kuidas käituda. Sanktsiooni siin ei ole — ta ei ütle sõnagagi, mis juhtub, kui kohustust ei täideta.</div>
+    </div>
+
+    <div class="lnk"><span class="ar">↓</span><span><b>Dispositsioon ei saabunud.</b> Kinnipeetav ei täitnud sisekorraeeskirju. Alles nüüd, ja ainult sellisel juhul, tuleb mängu teine norm.</span></div>
+
+    <div class="nrm">
+      <div class="nh"><b>Norm 2 — karistusnorm</b><span class="tt" data-pop="vangs63_1">VangS § 63 lg 1</span><span style="margin-left:auto;font-family:var(--mono);color:var(--accent)">D<sub>mitte</sub> – S</span></div>
+      <div class="rows">
+        <div class="nr h"><div class="k">Kui · D<sub>mitte</sub></div><div class="v">on rikutud VangS-i, sisekorraeeskirjade või muu õigusakti nõudeid · rikkumine oli süüline</div></div>
+        <div class="nr t"><div class="k">Siis · S</div><div class="v">võib kohaldada distsiplinaarkaristusi: noomitus … kartser kuni 45 ööpäevaks</div></div>
+      </div>
+      <div class="nf">Ka see norm on ise kaheosaline. Kolmeosaline pilt tekib alles siis, kui vaadata mõlemat normi korraga.</div>
+    </div>
+  </div>
+
+  <div class="formula">
+    <div>
+      <span class="lbl"><span class="tt" data-pop="primaar">Primaarnorm</span> · käitumisnorm</span>
+      <div class="f">H – D</div>
+      <p>Esimene ring. Kehtib kohe ja kõigile, kellele norm suunatud on. Tagajärg on <strong>dispositsioon</strong> — kohustus või õigus.</p>
+    </div>
+    <div>
+      <span class="lbl"><span class="tt" data-pop="sekundaar">Sekundaarnorm</span> · karistusnorm</span>
+      <div class="f">D<sub>mitte</sub> – S</div>
+      <p>Teine ring. Käivitub alles siis, kui esimese normi dispositsioon jäi saabumata. Tagajärg on <strong>sanktsioon</strong>.</p>
+    </div>
+  </div>
+
+  <p class="claim" style="font-size:13.5px">Sellest tulebki valem <strong>KUI — SIIS — VASTASEL JUHUL</strong>. Ta ei kirjelda üht normi, vaid <strong>kahe normi ahelat</strong>. Kaasuses tähendab see, et karistusnormi juurde ei saa minna enne, kui oled näidanud, millist käitumisnormi rikuti.</p>
+
+  <div class="qaset">
+    <span class="qh">Kontrolli ennast</span>
+    <details class="qa"><summary>Miks ei saa öelda, et täielikul normil on kolm osa?</summary>
+      <div class="ans">Sest täielik norm koosneb kahest poolest. Kolmeosaline pilt tekib alles siis, kui vaadata korraga <em>kahte</em> normi: käitumisnormi ja seda kaitsvat karistusnormi. Ühes paragrahvis on H ja D, teises S.</div></details>
+    <details class="qa"><summary>Mis on sanktsiooni ja dispositsiooni vahe, kui mõlemad on õiguslikud tagajärjed?</summary>
+      <div class="ans">Dispositsioon on primaarnormi tagajärg — kohustus või õigus. Sanktsioon on sekundaarnormi tagajärg — riiklik sund, mida rakendatakse rikkumisel. Vahe ei ole tagajärje olemuses, vaid selles, kumb normiliik teda kannab.</div></details>
+    <details class="qa"><summary>Kinnipeetav keeldus ametniku korraldust täitmast. Millise normiga alustad?</summary>
+      <div class="ans">Käitumisnormiga — VangS § 67 lg 1 — et näidata, milline kohustus üldse oli ja et see jäi täitmata. Alles siis saab minna VangS § 63 lg 1 juurde. Karistusnormi koosseisu tunnus „nõuete rikkumine“ ongi sisustatud käitumisnormi kaudu.</div></details>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Samm 4</span>
+    <h2>Üks hoiatus terminoloogia kohta</h2>
+    <p class="claim">Nüüd, kui struktuur on selge, on ka näha, miks sõna „dispositsioon“ kursuse materjalides kahte eri asja tähendab.</p>
+  </div>
+
+  <div class="vv">
+    <div class="vh"><b>Sõna „dispositsioon“ kolm eri tähendust</b><span>materjalides kaks versiooni</span></div>
+    <div class="vg">
+      <div class="vc">
+        <span class="vl">Tähendus A — konspekt</span>
+        <p>„Dispositsioon — <strong>õiguslik tagajärg</strong>, kus õigusnormi kohaldamisel on isik kohustatud või õigustatud millekski.“</p>
+        <p style="margin-top:7px;color:var(--muted);font-size:12.5px">Siin on dispositsioon tagajärg ehk „siis“-pool.</p>
+      </div>
+      <div class="vc">
+        <span class="vl">Tähendus B — loengu slaidid</span>
+        <p>„Dispositsioon on normi element, mis näitab, <strong>kuidas peab õigussubjekt käituma</strong> hüpoteesi tingimuste olemasolul, missugune käitumine on talle lubatud, keelatud või kohustuslik.“</p>
+        <p style="margin-top:7px;color:var(--muted);font-size:12.5px">Siin on dispositsioon käitumisreegel ise.</p>
+      </div>
+      <div class="vc">
+        <span class="vl">Kolmas tähendus — sõna „hüpotees“</span>
+        <p>Kaasuse lahendamise juures tähendab „hüpotees“ hoopis <strong>lahendaja tööoletust</strong>: „Kaasuse lahendamise alguses püstitatud hüpotees ja lahendamise tulemusel saadud hüpoteetiline tulemus peavad olema vastavuses.“</p>
+        <p style="margin-top:7px;color:var(--muted);font-size:12.5px">Mitte normi element.</p>
+      </div>
+    </div>
+    <div class="vf">Praktikas ei ole vahe suur: mõlemad tähendused osutavad normi „siis“-poolele, lihtsalt eri nurga alt. Slaidid ise ühendavad need, kirjutades primaarnormi kohta „õiguslik tagajärg e dispositsioon“. Eksamil loeb see, kumba käsitlust küsimus kasutab.</div>
+  </div>
+
+  <div class="sec-head" style="margin-top:8px">
+    <h3 style="font-family:var(--display);font-size:19px">Võta norm ise lahti</h3>
+    <p class="claim" style="font-size:13.5px">Klõpsa lauseosadel. Iga klõps vahetab märgistust: märkimata → <mark class="h">hüpotees</mark> → <mark class="t">tagajärg</mark> → märkimata. Kui valmis, vajuta „Kontrolli“.</p>
+  </div>
+
+  <div class="split">
+    <div class="sh"><span class="sl">VangS § 63 lg 1 · distsiplinaarkaristused</span></div>
+    <div class="sb">
+      <span class="sp" data-ans="h">Käesoleva seaduse, vangla sisekorraeeskirjade või muude õigusaktide nõuete</span>
+      <span class="sp" data-ans="h">süülise rikkumise eest</span>
+      <span class="sp" data-ans="t">võib kinnipeetavale kohaldada distsiplinaarkaristusi</span>.
+      <span class="sp" data-ans="t">Need on: 1) noomitus … 4) kartserisse paigutamine kuni 45 ööpäevaks</span>.
+      <div class="sf">
+        <button type="button" data-act="check">Kontrolli</button>
+        <button type="button" data-act="reset">Alusta uuesti</button>
+        <span class="sr"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">01 · Päris hierarhia</span>
+    <h2>Õigusjõu astmed</h2>
+    <p class="claim">Ainus liigitus, kus normid tõesti üksteise all asuvad. Alus on <span class="tt" data-pop="ps3">PS § 3</span>: riigivõimu teostatakse üksnes põhiseaduse ja sellega kooskõlas olevate seaduste alusel, ning täitmiseks kohustuslikud saavad olla üksnes avaldatud seadused.</p>
+  </div>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 640 432" role="img" aria-label="Õigusaktide neljaastmeline hierarhia: põhiseadus, seadused, valitsuse ja ministri määrused, kohaliku omavalitsuse määrused.">
+        <defs><marker id="ar-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker></defs>
+        <rect x="140" y="16" width="360" height="52" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <g fill="none" stroke="currentColor" stroke-width="1.25" opacity=".55">
+          <rect x="140" y="122" width="360" height="52" rx="2"/>
+          <rect x="140" y="228" width="360" height="52" rx="2"/>
+          <rect x="140" y="334" width="360" height="52" rx="2"/>
+        </g>
+        <g font-family="IBM Plex Sans, sans-serif" text-anchor="middle" fill="currentColor">
+          <text x="320" y="41" font-size="15" font-weight="600">Põhiseadus</text>
+          <text x="320" y="58" font-size="11" opacity=".65">kõrgeim aste · normikontrolli mõõdupuu</text>
+          <text x="320" y="147" font-size="15" font-weight="600">Seadused</text>
+          <text x="320" y="164" font-size="11" opacity=".65">Riigikogu · KorS, VangS, KVTS, HMS, KarS</text>
+          <text x="320" y="253" font-size="15" font-weight="600">Valitsuse ja ministri määrused</text>
+          <text class="tt" data-pop="volitusnorm" x="320" y="270" font-size="11" opacity=".75">ainult seaduses antud volitusnormi alusel</text>
+          <text x="320" y="359" font-size="15" font-weight="600">Kohaliku omavalitsuse määrused</text>
+          <text x="320" y="376" font-size="11" opacity=".65">kehtivad ainult oma haldusterritooriumil</text>
+        </g>
+        <g stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-h)" opacity=".8">
+          <line x1="320" y1="120" x2="320" y2="72"/><line x1="320" y1="226" x2="320" y2="178"/><line x1="320" y1="332" x2="320" y2="284"/>
+        </g>
+        <text x="140" y="416" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="currentColor" opacity=".7">Nool = madalam aste peab olema kooskõlas kõrgemaga</text>
+      </svg>
+    </div>
+    <figcaption>Nool käib mõlemat pidi tööle: ülespoole kooskõlanõue, allapoole volitus. <span class="tt" data-pop="honte">HÕNTE</span> järgi algab määruse eelnõu just <strong>preambulist, mis viitab volitus- ehk aluseks olevale normile</strong> — see nõue on kursuse materjalis. <span class="tt" data-pop="ps87">PS § 87 p 6</span> seevastu ei ole; vt hüpikakna märkust.</figcaption>
+  </figure>
+
+  <div class="qaset">
+    <span class="qh">Kontrolli ennast</span>
+    <details class="qa"><summary>Millest algab määruse eelnõu tekst ja miks see oluline on?</summary>
+      <div class="ans">Preambulist, mis viitab volitus- või aluseks olevale normile. Ilma volitusnormita puudub määrusel alus.</div></details>
+    <details class="qa"><summary>Mida ütleb PS § 3 avaldamise kohta?</summary>
+      <div class="ans">Seadused avaldatakse ettenähtud korras, ja täitmiseks kohustuslikud saavad olla üksnes avaldatud seadused.</div></details>
+  </div>
+
+  <div data-ex="hier"></div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">02 · Päris sõltuvus</span>
+    <h2>Spetsialiseeritud normid ripuvad täieliku küljes</h2>
+    <p class="claim">Täielikul normil on kaheosaline struktuur. Spetsialiseeritud normil see <strong>puudub</strong> — ta ainult viitab, seletab või kitsendab. Näited on kõik vangistusseadusest, et oleks näha, kuidas nad ühe regulatsiooni sees koos töötavad.</p>
+  </div>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 760 352" role="img" aria-label="Täielik norm VangS paragrahv 63 lõige 1 ülal, selle all neli spetsialiseeritud normiliiki, mille nooled suunduvad täieliku normi juurde.">
+        <defs><marker id="ar-d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker></defs>
+        <rect x="230" y="18" width="300" height="82" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <g font-family="IBM Plex Sans, sans-serif" text-anchor="middle" fill="currentColor">
+          <text class="tt" data-pop="taielik" x="380" y="42" font-size="14" font-weight="600" letter-spacing=".06em">TÄIELIK NORM</text>
+          <text x="380" y="61" font-size="11.5" opacity=".7">faktiline koosseis + õiguslik tagajärg</text>
+          <text class="tt" data-pop="vangs63_1" x="380" y="83" font-size="11" font-family="IBM Plex Mono, monospace" opacity=".75">VangS § 63 lg 1</text>
+        </g>
+        <g stroke="currentColor" stroke-width="1.4" marker-end="url(#ar-d)" opacity=".7">
+          <line x1="95" y1="212" x2="252" y2="104"/><line x1="285" y1="212" x2="333" y2="104"/>
+          <line x1="475" y1="212" x2="427" y2="104"/><line x1="665" y1="212" x2="508" y2="104"/>
+        </g>
+        <g fill="none" stroke="currentColor" stroke-width="1.25" opacity=".5">
+          <rect x="10" y="214" width="170" height="80" rx="2"/><rect x="200" y="214" width="170" height="80" rx="2"/>
+          <rect x="390" y="214" width="170" height="80" rx="2"/><rect x="580" y="214" width="170" height="80" rx="2"/>
+        </g>
+        <g font-family="IBM Plex Sans, sans-serif" text-anchor="middle" fill="currentColor">
+          <text class="tt" data-pop="seletav" x="95" y="240" font-size="13.5" font-weight="600">Seletav</text>
+          <text x="95" y="259" font-size="11" opacity=".7">sisustab tunnuse</text>
+          <text class="tt" data-pop="vangs77" x="95" y="279" font-size="10.5" font-family="IBM Plex Mono, monospace" opacity=".75">VangS § 77</text>
+          <text class="tt" data-pop="viitav" x="285" y="240" font-size="13.5" font-weight="600">Viitav</text>
+          <text x="285" y="259" font-size="11" opacity=".7">laenab teisest normist</text>
+          <text class="tt" data-pop="vangs71" x="285" y="279" font-size="10.5" font-family="IBM Plex Mono, monospace" opacity=".75">VangS § 71 lg 3¹</text>
+          <text class="tt" data-pop="kitsendav" x="475" y="240" font-size="13.5" font-weight="600">Kitsendav</text>
+          <text x="475" y="259" font-size="11" opacity=".7">välistab juhtumid</text>
+          <text class="tt" data-pop="vangs63_2" x="475" y="279" font-size="10.5" font-family="IBM Plex Mono, monospace" opacity=".75">VangS § 63 lg 2</text>
+          <text class="tt" data-pop="blankett" x="665" y="240" font-size="13.5" font-weight="600">Blanketnorm</text>
+          <text x="665" y="259" font-size="11" opacity=".7">sisu tuleb väljastpoolt</text>
+          <text x="665" y="279" font-size="10" font-family="IBM Plex Mono, monospace" opacity=".55">„ohutusnõuete rikkumine“</text>
+        </g>
+        <text x="10" y="332" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="currentColor" opacity=".7">Nool = ei kohaldu iseseisvalt, teenindab täielikku normi</text>
+      </svg>
+    </div>
+    <figcaption>Kolm esimest on kursuse oma kolmik (viitab · seletab · kitsendab); <span class="tt" data-pop="blankett">blanketnorm</span>, <span class="tt" data-pop="fiktsioon">fiktsioonid</span> ja <span class="tt" data-pop="presumptsioon">presumptsioonid</span> töötavad sama loogika järgi. Praktiline järeldus: <strong>leitud paragrahv on peaaegu kunagi lõplik vastus.</strong> VangS § 63 lg 1 lugemine ilma §-ta 77 ja lõiketa 2 annab noore kinnipeetava puhul vale tulemuse.</figcaption>
+  </figure>
+
+  <div data-ex="spets"></div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Kursuse loetelu</span>
+    <h2>Normiliigid funktsiooni järgi</h2>
+    <p class="claim">Sama norm võib korraga kuuluda mitmesse lahtrisse. Kõige olulisem eristus praktikas on see, kas norm reguleerib käitumist, annab pädevuse või annab sekkumiseks õigusliku aluse.</p>
+  </div>
+
+  <div class="fns">
+    <div class="fn"><b><span class="tt" data-pop="kaitumisnorm">Käitumisnormid</span></b><span class="d">Kohustavad, keelavad ja lubavad. Primaarnormide tuum.</span><span class="c"><span class="tt" data-pop="ls7">LS § 7² lg 1</span> · vangla: <span class="tt" data-pop="vangs67">VangS § 67 lg 1</span></span></div>
+    <div class="fn"><b><span class="tt" data-pop="padevusnorm">Pädevusnormid</span></b><span class="d">Kompetentsinormid — kes tohib tegutseda ja milles.</span><span class="c"><span class="tt" data-pop="sads42">SadS § 42 lg 3</span> · <span class="tt" data-pop="ls100">LS § 100 lg 4</span></span></div>
+    <div class="fn"><b><span class="tt" data-pop="sekkumisnorm">Sekkumist õigustavad</span></b><span class="d">Õiguslikud alused riigi sekkumiseks isiku õigustesse.</span><span class="c"><span class="tt" data-pop="kors28">KorS § 28 lg 1</span> · vangla: <span class="tt" data-pop="vangs71">VangS § 71 lg 3¹</span></span></div>
+    <div class="fn"><b><span class="tt" data-pop="noudealus">Nõude alused</span></b><span class="d">Subjektiivset õigust sisaldavad normid — käitumisnormide eriliik.</span><span class="c"><span class="tt" data-pop="kvts43">KVTS § 43 lg 1</span> · vangla: <span class="tt" data-pop="vangs25">VangS § 25 lg 1</span></span></div>
+    <div class="fn"><b>Karistusnormid</b><span class="d">Sanktsiooni ettenägevad õiguslikud alused.</span><span class="c">vangla: <span class="tt" data-pop="vangs63_1">VangS § 63 lg 1</span> · <span class="tt" data-pop="ls201">LS § 201 lg 1</span> · <span class="tt" data-pop="sads48">SadS § 48 lg 1</span></span></div>
+    <div class="fn"><b><span class="tt" data-pop="volitusnorm">Volitusnormid</span></b><span class="d">Alus madalama astme akti andmiseks. Määruse preambuli sisu.</span><span class="c"><span class="tt" data-pop="ps87">PS § 87 p 6</span></span></div>
+    <div class="fn"><b><span class="tt" data-pop="legaaldef">Legaaldefinitsioonid</span></b><span class="d">Mõistenormid. Esimene koht, kust määratlemata mõistet otsida.</span><span class="c"><span class="tt" data-pop="kors5">KorS § 5 lg 1</span> · vangla: <span class="tt" data-pop="vangs77">VangS § 77</span></span></div>
+    <div class="fn"><b>Korraldusnormid</b><span class="d">Vormi-, tasu- ja <span class="tt" data-pop="menetlusnorm">menetlusnormid</span>.</span><span class="c"><span class="tt" data-pop="hms40">HMS § 40 lg 1</span> · <span class="tt" data-pop="hms6">HMS § 6</span></span></div>
+    <div class="fn"><b>Rakendusnormid</b><span class="d">Üleminekusätted ja jõustumissätted seaduse lõpus.</span><span class="c">rakendussätted</span></div>
+    <div class="fn"><b>Kohaldavusnormid</b><span class="d">Ütlevad, millistele suhetele akt üldse laieneb.</span><span class="c" style="opacity:.7">allikates näidet ei ole</span></div>
+    <div class="fn"><b>Muutvad, täiendavad, tühistavad</b><span class="d">Muudavad või tunnistavad kehtetuks teisi norme.</span><span class="c">muutmisseadused</span></div>
+  </div>
+
+  <div data-ex="liigid"></div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">03 · Mitte hierarhia</span>
+    <h2>Paralleelsed teljed</h2>
+    <p class="claim">Siin läheb puu-kujutlus katki. Need üksteist telge on sõltumatud ja iga norm saab igal teljel korraga väärtuse. Vali norm ja vaata, milline rada tekib — kõik telje väärtused on klõpsatavad.</p>
+  </div>
+
+  <div class="picker" role="group" aria-label="Vali näitenorm">
+    <div class="pgrp"><span class="gl">Käitumisnorm</span><div class="gb"><button type="button" data-n="vangs67" aria-pressed="false">VangS § 67 lg 1</button><button type="button" data-n="ls7" aria-pressed="false">LS § 7² lg 1</button><button type="button" data-n="ls94" aria-pressed="false">LS § 94 lg 1</button><button type="button" data-n="pks16" aria-pressed="false">PKS § 16</button></div></div>
+    <div class="pgrp"><span class="gl">Sekkumist õigustav</span><div class="gb"><button type="button" data-n="kors28" aria-pressed="false">KorS § 28 lg 1</button><button type="button" data-n="kors30" aria-pressed="false">KorS § 30 lg 1</button><button type="button" data-n="msys" aria-pressed="false">MSÜS § 25 lg 1</button></div></div>
+    <div class="pgrp"><span class="gl">Karistusnorm</span><div class="gb"><button type="button" data-n="vangs63" aria-pressed="false">VangS § 63 lg 1</button><button type="button" data-n="ls201" aria-pressed="false">LS § 201 lg 1</button></div></div>
+    <div class="pgrp"><span class="gl">Pädevus / korraldus</span><div class="gb"><button type="button" data-n="sads42" aria-pressed="false">SadS § 42 lg 3</button><button type="button" data-n="hms40" aria-pressed="false">HMS § 40 lg 1</button></div></div>
+    <div class="pgrp"><span class="gl">Nõude alus</span><div class="gb"><button type="button" data-n="kvts" aria-pressed="false">KVTS § 43 lg 1 p 1</button><button type="button" data-n="vangs25" aria-pressed="false">VangS § 25 lg 1</button></div></div>
+    <div class="pgrp"><span class="gl">Spetsialiseeritud</span><div class="gb"><button type="button" data-n="vangs77" aria-pressed="false">VangS § 77</button><button type="button" data-n="vangs63b" aria-pressed="false">VangS § 63 lg 2</button><button type="button" data-n="vangs71" aria-pressed="false">VangS § 71 lg 3¹</button><button type="button" data-n="kors5" aria-pressed="false">KorS § 5 lg 1</button></div></div>
+  </div>
+
+  <div class="gloss" id="gloss" aria-live="polite"></div>
+  <div class="matrix" id="matrix"></div>
+  <p class="claim" style="font-size:13.5px">Kui see oleks puu, kaoks pool infost ära: <em>valikuline koosseis</em> ei ole <em>keelava normi</em> alaliik ega <em>otsustusdiskretsioon</em> <em>avaliku õiguse</em> alaliik. Telgede arv ongi põhjus, miks sama norm kuulub korraga tosinasse liiki.</p>
+
+  <div class="vv">
+    <div class="vh"><b>Koosseisu ja tagajärje liikide nimetused — kolm eri komplekti</b><span>materjalides kaks versiooni</span></div>
+    <div class="vg">
+      <div class="vc"><span class="vl">Konspekt</span><p>lihtne · keeruline · <strong>alternatiivne</strong></p><p style="margin-top:7px;color:var(--muted);font-size:12.5px">Ainult üks nimi kolmandale liigile.</p></div>
+      <div class="vc"><span class="vl">Loengu slaidid</span><p>lihtne · <strong>keeruline (kumulatiivne)</strong> · <strong>valikuline (alternatiivne)</strong></p><p style="margin-top:7px;color:var(--muted);font-size:12.5px">Kaksiknimed mõlemal. Lehe telgede nupud järgivad seda komplekti.</p></div>
+      <div class="vc"><span class="vl">Rakendamise slaidid</span><p>lihtne · <strong>alternatiivne</strong> · keeruline</p><p style="margin-top:7px;color:var(--muted);font-size:12.5px">Teine järjekord, kaksiknimesid ei ole.</p></div>
+    </div>
+    <div class="vf">Sisuliselt on tegu sama kolmikuga. Eksamil tasub osata mõlemat sõnapaari: „keeruline = kumulatiivne“ ja „valikuline = alternatiivne“.</div>
+  </div>
+
+  <div class="qaset">
+    <span class="qh">Kontrolli ennast</span>
+    <details class="qa"><summary>Mis vahe on kumulatiivsel ja valikulisel faktilisel koosseisul tagajärje kohaldamisel?</summary>
+      <div class="ans">Kumulatiivse (ja lihtsa) koosseisu puhul peavad õigusliku tagajärje kohaldamiseks <strong>kõik</strong> tunnused olema täidetud. Valikulise puhul piisab <strong>vähemalt ühest</strong> tunnusest.</div></details>
+    <details class="qa"><summary>KorS § 30 lg 1 koosseis on korraga kumulatiivne ja alternatiivne. Mida see tähendab?</summary>
+      <div class="ans">Valem on: kui E1 v E2 v E3 v E4 <em>ning</em> E5 v E6 v …, siis võib ÕT1 ja ÕT2. Tunnuste rühmi on kaks ja need on omavahel „ja“-seoses, aga kummagi rühma sees piisab ühest alternatiivist.</div></details>
+    <details class="qa"><summary>VangS § 63 lg 1 koosseisus on „VangS või VSKE või vm õigusakt“. Kas see teeb kogu koosseisu valikuliseks?</summary>
+      <div class="ans">Ei. Koosseisul on kaks tunnust — (E1) nõuete rikkumine ja (E2) süülisus — ja need on kumulatiivsed. Alternatiiv on ainult E1 <em>sees</em>: rikutud võib olla ükskõik millist kolmest aktist.</div></details>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Tagajärje lugemine</span>
+    <h2>Dispositsioon ja <span class="tt" data-pop="diskretsioon">kaalutlusõigus</span></h2>
+    <p class="claim">Normi sõnastus ütleb otse, kui palju vabadust rakendajal on. See on üks väheseid kohti, kus liigitus on tekstist vahetult välja loetav — ja eksamil kõige kiirem punktivõit.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card" style="--c:var(--accent)">
+      <span class="k">„peab“ · „on“ · „keeldub“</span>
+      <h3><span class="tt" data-pop="imperatiivne">Imperatiivne</span></h3>
+      <p>Tagajärg on ette antud. <span class="tt" data-pop="absoluutne">Absoluutselt määratletud dispositsioon</span> — poolte õigused ja kohustused on täpselt kindlaks määratud, valikuvabadust ei jää.</p>
+      <span class="ex"><span class="tt" data-pop="msys25">MSÜS § 25 lg 1</span> — „keeldub tegevusloa andmisest“</span>
+    </div>
+    <div class="card" style="--c:var(--proc)">
+      <span class="k">„võib“</span>
+      <h3><span class="tt" data-pop="otsustusd">Otsustusdiskretsioon</span></h3>
+      <p>Rakendaja otsustab, <em>kas</em> tagajärg üldse saabub. <span class="tt" data-pop="suhteline">Suhteliselt määratletud dispositsioon</span>: ametnik peab hakkama kaaluma ja kaalutlust põhjendama.</p>
+      <span class="ex"><span class="tt" data-pop="kors30">KorS § 30 lg 1</span> — „võib isiku peatada ja teda küsitleda“</span>
+    </div>
+    <div class="card" style="--c:var(--proc)">
+      <span class="k">„ÕT1 või ÕT2 või ÕT3“</span>
+      <h3><span class="tt" data-pop="valikud">Valikudiskretsioon</span></h3>
+      <p>Tagajärg saabub, aga rakendaja valib <em>millise</em>. Kaalumine käib variantide, mitte saabumise üle.</p>
+      <span class="ex"><span class="tt" data-pop="vangs63_1">VangS § 63 lg 1</span> — noomitus … või kartser</span>
+    </div>
+    <div class="card" style="--c:var(--meta)">
+      <span class="k">Suund</span>
+      <h3><span class="tt" data-pop="avalik">Avalik</span> vs <span class="tt" data-pop="era">eraõigus</span></h3>
+      <p>Avalikus õiguses tohib riik teha seda, milleks on volitus. Eraõiguses on lubatud kõik, mis pole keelatud — sellest tulebki <span class="tt" data-pop="dispositiivne">dispositiivsus</span>.</p>
+      <span class="ex"><span class="tt" data-pop="vos5">VÕS § 5</span> — seaduse dispositiivsuse põhimõte</span>
+    </div>
+  </div>
+
+  <div data-ex="kaalutlus"></div>
+</section>
+
+<!-- ══════════ OSA II ══════════ -->
+<div class="part" id="rakendamine" style="--pc:var(--proc)">
+  <div class="bar"><span class="num">OSA II</span><h2>Rakendamine</h2></div>
+  <p>Kuidas norm päris elus tööle hakkab — ja miks riigi tegevus on siin eriliik.</p>
+</div>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Realiseerimine</span>
+    <h2>Kolm viisi, kuidas õigus realiseerub</h2>
+    <p class="claim">Õiguse realiseerimine on õigusnormidest tulenevate tegevuste faktiline kajastumine inimkäitumises. Enamasti juhtub see nii tavaliselt, et sellele ei mõeldagi — rakendamine on erand, mitte reegel. Tekib <span class="tt" data-pop="oigussuhe">õigussuhe</span>.</p>
+  </div>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 760 312" role="img" aria-label="Õiguse realiseerimine jaguneb vahetuks (kasutamine ja järgimine) ning vahendatuks (rakendamine pädeva riigiorgani kaudu).">
+        <defs><marker id="ar-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker></defs>
+        <rect x="270" y="12" width="220" height="46" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <text x="380" y="34" font-family="IBM Plex Sans, sans-serif" font-size="13.5" font-weight="600" text-anchor="middle" fill="currentColor">ÕIGUSE REALISEERIMINE</text>
+        <text x="380" y="50" font-family="IBM Plex Sans, sans-serif" font-size="10.5" text-anchor="middle" fill="currentColor" opacity=".65">eluline situatsioon = õigusnormis kirjeldatu</text>
+        <g stroke="currentColor" stroke-width="1.4" marker-end="url(#ar-r)" opacity=".75" fill="none">
+          <path d="M340 60 L200 60 L200 104"/><path d="M420 60 L560 60 L560 104"/>
+          <line x1="130" y1="152" x2="130" y2="196"/><line x1="272" y1="152" x2="272" y2="196"/><line x1="560" y1="152" x2="560" y2="196"/>
+        </g>
+        <g fill="none" stroke="currentColor" stroke-width="1.25" opacity=".55">
+          <rect x="60" y="106" width="280" height="46" rx="2"/><rect x="420" y="106" width="280" height="46" rx="2"/>
+          <rect x="52" y="198" width="156" height="76" rx="2"/><rect x="194" y="198" width="156" height="76" rx="2"/><rect x="450" y="198" width="220" height="76" rx="2"/>
+        </g>
+        <g font-family="IBM Plex Sans, sans-serif" text-anchor="middle" fill="currentColor">
+          <text x="200" y="127" font-size="13" font-weight="600">VAHETU</text>
+          <text x="200" y="144" font-size="10.5" opacity=".65">isik realiseerib ise, oma käitumises</text>
+          <text x="560" y="127" font-size="13" font-weight="600">VAHENDATUD</text>
+          <text x="560" y="144" font-size="10.5" opacity=".65">pädeva riigiorgani kaudu</text>
+          <text class="tt" data-pop="kasutamine" x="130" y="224" font-size="13" font-weight="600">Kasutamine</text>
+          <text class="tt" data-pop="subjoigus" x="130" y="243" font-size="10.5" opacity=".75">subjektiivne õigus</text>
+          <text x="130" y="259" font-size="10.5" opacity=".7">aktiivne — isik kasutab</text>
+          <text class="tt" data-pop="jargimine" x="272" y="224" font-size="13" font-weight="600">Järgimine</text>
+          <text class="tt" data-pop="jurkohustus" x="272" y="243" font-size="10.5" opacity=".75">juriidiline kohustus</text>
+          <text x="272" y="259" font-size="10.5" opacity=".7">ka passiivne — keelust hoidumine</text>
+          <text class="tt" data-pop="rakendamine" x="560" y="224" font-size="13" font-weight="600">Rakendamine</text>
+          <text x="560" y="243" font-size="10.5" opacity=".7">riikliku tegevuse eriliik</text>
+          <text class="tt" data-pop="subsum" x="560" y="260" font-size="10.5" opacity=".75">sisuks on subsumeerimine</text>
+        </g>
+        <text x="20" y="300" font-family="IBM Plex Sans, sans-serif" font-size="11.5" fill="currentColor" opacity=".6">Näide: A juhib autot — kasutab · A arvestab teiste liiklejatega — järgib · Transpordiamet annab A-le juhiloa — rakendab</text>
+      </svg>
+    </div>
+    <figcaption>Liiklusseaduse näide käib kogu skeemi läbi ühe inimesega: <span class="tt" data-pop="ls94">LS § 94 lg 1</span> annab A-le õiguse juhtida, <span class="tt" data-pop="ls16">LS § 16 lg 1</span> paneb talle kohustuse, <span class="tt" data-pop="ls100">LS § 100</span> alusel rakendab Transpordiamet õigust tema suhtes ja <span class="tt" data-pop="ls201">LS § 201 lg 1</span> alusel karistab politsei juhtimisõiguseta juhti. Kasutamise ja järgimise puhul realiseerib isik normi <strong>ise ja vahetult</strong>; rakendamisel ei saa subjektiivsed õigused ja kohustused realiseeruda <strong>ilma võimuorgani abita</strong>.</figcaption>
+  </figure>
+
+  <div class="vv">
+    <div class="vh"><b>Vahetu realiseerimise viise on kaks või kolm</b><span>materjalides kaks versiooni</span></div>
+    <div class="vg">
+      <div class="vc"><span class="vl">Konspekt ütleb „kaks“</span><p>„Õiguse vahetu realiseerimise viise on <strong>kaks</strong> — õiguse kasutamine ja õigusest kinnipidamine.“</p></div>
+      <div class="vc"><span class="vl">Sama jaotis loetleb kolm</span><ol><li>õiguse kasutamine</li><li>õiguse täitmine ehk kinnipidamine</li><li>õiguse järgimine</li></ol></div>
+      <div class="vc"><span class="vl">Slaidid loetlevad kolm, aga teisiti</span><p>kasutatakse · järgitakse · <strong>rakendatakse</strong></p><p style="margin-top:7px;color:var(--muted);font-size:12.5px">Siin on kolmandaks rakendamine, mis on <em>vahendatud</em> viis, mitte vahetu.</p></div>
+    </div>
+    <div class="vf">Ülaltoodud joonis järgib slaidide jaotust. Kui eksamil küsitakse vahetu realiseerimise viise, tasub teada, et konspekt loetleb neid kolm — kasutamine, täitmine ehk kinnipidamine, järgimine — kuigi ütleb enne, et neid on kaks.</div>
+  </div>
+
+  <div class="qaset">
+    <span class="qh">Kontrolli ennast</span>
+    <details class="qa"><summary>Vanglaametnik paigutab kinnipeetava kartserisse. Milline realiseerimise viis see on?</summary>
+      <div class="ans">Rakendamine ehk vahendatud realiseerimine. Riikliku tegevuse eriliik, mis toimub selleks volitatud riigiorgani või ametiisiku kaudu; subjektiivsed õigused ja kohustused ei realiseeru siin ilma võimuorgani abita.</div></details>
+    <details class="qa"><summary>Kinnipeetav täidab vangla sisekorraeeskirju. Milline viis?</summary>
+      <div class="ans">Vahetu realiseerimine — õiguse täitmine ehk kinnipidamine, sest õigusnormist tuleneb kohustus, mida tuleb järgida. Keelust hoidumine on passiivne järgimine.</div></details>
+  </div>
+
+  <div data-ex="realis"></div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Tulem</span>
+    <h2>Üldaktist üksikaktini</h2>
+    <p class="claim">Rakendamise tulem ei ole uus norm, vaid otsus konkreetse juhtumi kohta.</p>
+  </div>
+
+  <div class="tblwrap">
+    <table class="tbl">
+      <thead><tr><th>Tunnus</th><th><span class="tt" data-pop="yldakt">Üldakt</span></th><th><span class="tt" data-pop="yksikakt">Üksikakt</span></th></tr></thead>
+      <tbody>
+        <tr><td class="fk">Üldistusaste</td><td>abstraktne — tüüpjuhtumid, impersonaalsus</td><td>konkreetne</td></tr>
+        <tr><td class="fk">Adressaat</td><td>üldkohustuslik — piiramatu arv juhte ja isikuid</td><td>individuaalne</td></tr>
+        <tr><td class="fk">Roll</td><td>õigust loov</td><td>õigust rakendav</td></tr>
+        <tr><td class="fk">Näited</td><td>päästeseadus, haldusmenetluse seadus, valitsuse määrus</td><td>käskkiri ametisse nimetamise kohta, ettekirjutus, luba, trahvimäärus, kohtuotsus</td></tr>
+        <tr><td class="fk">Ühine</td><td colspan="2">Mõlemad kehtestatakse riigi poolt ja mõlemad on tagatud riigi sunnijõuga.</td></tr>
+      </tbody>
+      <caption><strong>Üksikakt antakse üldakti alusel.</strong> Rakendamise tulem ei pea siiski olema akt — see võib olla ka <span class="tt" data-pop="toiming">toiming</span> (nt politsei toimetab isiku korrakaitseseaduse alusel kainenema). Ettekirjutuse aluseks on nt <span class="tt" data-pop="kors28">KorS § 28 lg 1</span>.</caption>
+    </table>
+  </div>
+
+  <div data-ex="aktid"></div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Skeem</span>
+    <h2>Õiguse rakendamise käik</h2>
+    <p class="claim">Õiguse rakendamine on otsuse tegemine õigusnormi alusel mingi elujuhtumi kohta. Skeem näeb välja lineaarne, aga ei ole seda: asjaolude selgumine muudab normivalikut ja normivalik muudab seda, milliseid asjaolusid üldse otsida.</p>
+  </div>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 700 520" role="img" aria-label="Õiguse rakendamise viis sammu vertikaalse ahelana, kus neljandast sammust viib tagasisidenool teise sammu juurde.">
+        <defs><marker id="ar-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker></defs>
+        <g fill="none" stroke="currentColor" stroke-width="1.25" opacity=".55">
+          <rect x="40" y="16" width="420" height="58" rx="2"/><rect x="40" y="118" width="420" height="58" rx="2"/>
+          <rect x="40" y="220" width="420" height="58" rx="2"/><rect x="40" y="322" width="420" height="58" rx="2"/>
+        </g>
+        <rect x="40" y="424" width="420" height="58" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <g font-family="IBM Plex Sans, sans-serif" fill="currentColor">
+          <text x="62" y="41" font-size="14" font-weight="600">Õigusliku küsimuse sõnastamine</text>
+          <text x="62" y="60" font-size="11" opacity=".65">Kas see on üldse õiguslik probleem? Millele täpselt vastust otsitakse?</text>
+          <text x="62" y="143" font-size="14" font-weight="600">Kehtiva õiguse kindlakstegemine</text>
+          <text x="62" y="162" font-size="11" opacity=".65">Õigusakt, paragrahv, lõige, punkt — ja normi kehtivuse kontroll</text>
+          <text x="62" y="245" font-size="14" font-weight="600">Asjaolude kindlakstegemine</text>
+          <text class="tt" data-pop="hms6" x="62" y="264" font-size="11" opacity=".75">Tõendamine ja uurimine · HMS § 6</text>
+          <text x="62" y="347" font-size="14" font-weight="600">Normi ja tagajärje kohaldamine</text>
+          <text x="62" y="366" font-size="11" opacity=".65">Subsumeerimine, tõlgendamine, kaalutlusõiguse teostamine</text>
+          <text x="62" y="449" font-size="14" font-weight="600">Lahendi vormistamine</text>
+          <text x="62" y="468" font-size="11" opacity=".65">Üksikakt või toiming · avaldamine ja vajadusel täideviimine</text>
+        </g>
+        <g stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-s)" opacity=".8">
+          <line x1="250" y1="76" x2="250" y2="114"/><line x1="250" y1="178" x2="250" y2="216"/>
+          <line x1="250" y1="280" x2="250" y2="318"/><line x1="250" y1="382" x2="250" y2="420"/>
+        </g>
+        <path d="M462 351 C 560 351, 560 147, 464 147" fill="none" stroke="currentColor" stroke-width="1.4" stroke-dasharray="5 4" marker-end="url(#ar-s)" opacity=".75"/>
+        <text x="500" y="256" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="currentColor" opacity=".7">uued asjaolud</text>
+        <text x="500" y="271" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="currentColor" opacity=".7">→ uus normivalik</text>
+        <text x="40" y="508" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="currentColor" opacity=".7">Katkendjoon = skeem on korduv, mitte ühesuunaline</text>
+      </svg>
+    </div>
+    <figcaption>Asjaolude väljaselgitamine sõltub sellest, millist normi rakendatakse — aga rakendamine algab elulisest olukorrast, nii et osa asjaolusid on teada juba enne õigusliku küsimuse püstitamist. Sellest tulebki tagasisidenool. Tõendiliigid loetleb <span class="tt" data-pop="hms38">HMS § 38 lg 2</span>. Eesmärk on <strong>ratsionaalsus, kontrollitavus ja läbinähtavus</strong>.</figcaption>
+  </figure>
+
+  <div class="vv">
+    <div class="vh"><b>Rakendamise etappe on neli või viis — ja faktid tulevad eri kohas</b><span>materjalides kaks versiooni</span></div>
+    <div class="vg">
+      <div class="vc">
+        <span class="vl">Konspekt — neli etappi</span>
+        <ol>
+          <li><strong>faktilise koosseisu analüüs</strong> (faktid)</li>
+          <li>õigusnormi valik (norm)</li>
+          <li>õiguse tõlgendamine</li>
+          <li>õiguslik otsustus</li>
+        </ol>
+        <p style="margin-top:8px;color:var(--muted);font-size:12.5px">Faktid on <strong>esimesed</strong>. Tõlgendamine on eraldi etapp.</p>
+      </div>
+      <div class="vc">
+        <span class="vl">Loengu slaidid — viis etappi</span>
+        <ol>
+          <li>õigusliku küsimuse sõnastamine</li>
+          <li>kehtiva õiguse kindlakstegemine (norm)</li>
+          <li><strong>asjaolude kindlakstegemine</strong> (faktid)</li>
+          <li>normi ja tagajärje kohaldamine</li>
+          <li>lahendi vormistamine</li>
+        </ol>
+        <p style="margin-top:8px;color:var(--muted);font-size:12.5px">Faktid on <strong>kolmandad</strong>. Tõlgendamist eraldi etapina ei ole.</p>
+      </div>
+    </div>
+    <div class="vf">Ülaltoodud joonis järgib slaidide viiest skeemi. Allikad ise annavad lahenduse vihje: Slaidid ütlevad, et asjaolude väljaselgitamine sõltub normist, aga rakendamine algab elulisest olukorrast — seega on osa asjaolusid teada juba enne küsimuse püstitamist. See seletab, miks kaks skeemi faktid eri kohta paigutavad.</div>
+  </div>
+
+  <div class="cards">
+    <div class="card" style="--c:var(--proc)"><h3>Seaduslikkus</h3><p>Riiklik tegevus peab olema seaduse tasemel kokku lepitud ja riigiorgan allutab oma käitumise seadusele.</p></div>
+    <div class="card" style="--c:var(--proc)"><h3>Õiglus</h3><p>Just seaduslikkuse kaudu saab rakendamine olla õiglane — ametikohast hoolimata.</p></div>
+    <div class="card" style="--c:var(--proc)"><h3>Otstarbekohasus</h3><p>Ei vastandu seaduslikkusele, vaid täiendab seda.</p></div>
+    <div class="card" style="--c:var(--proc)"><h3>Põhjendatus</h3><p>Rakendusakt peab ütlema, miks just nii. Põhjendamata akt ei ole õiguspärane — seadus ise nõuab haldusaktide põhjendamist.</p></div>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Tuum</span>
+    <h2><span class="tt" data-pop="subsum">Subsumeerimine</span></h2>
+    <p class="claim">Subsumeerimine seisneb konkreetsete eluliste asjaolude võrdlemises õigusnormis esitatud abstraktse faktilise koosseisuga ning, kui seos on tuvastatud, lõppjärelduse tegemises õigusliku tagajärje osas.</p>
+  </div>
+
+  <figure>
+    <div class="scroller">
+      <svg viewBox="0 0 760 172" role="img" aria-label="Subsumeerimise neljalüliline ahel: elulised asjaolud, normi faktiline koosseis, võrdlus ja seose tuvastamine, lõppjäreldus.">
+        <defs><marker id="ar-sub" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker></defs>
+        <g fill="none" stroke="currentColor" stroke-width="1.25" opacity=".55">
+          <rect x="8" y="30" width="166" height="76" rx="2"/><rect x="204" y="30" width="166" height="76" rx="2"/><rect x="400" y="30" width="166" height="76" rx="2"/>
+        </g>
+        <rect x="596" y="30" width="156" height="76" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <g font-family="IBM Plex Sans, sans-serif" text-anchor="middle" fill="currentColor">
+          <text x="91" y="60" font-size="12.5" font-weight="600">Konkreetsed</text><text x="91" y="77" font-size="12.5" font-weight="600">elulised asjaolud</text>
+          <text x="91" y="94" font-size="10.5" opacity=".65">A₁, A₂ …</text>
+          <text x="287" y="60" font-size="12.5" font-weight="600">Õigusnormi</text>
+          <text class="tt" data-pop="fk" x="287" y="77" font-size="12.5" font-weight="600">faktiline koosseis</text>
+          <text x="287" y="94" font-size="10.5" opacity=".65">E₁, E₂ …</text>
+          <text x="483" y="60" font-size="12.5" font-weight="600">Võrdlus ja seose</text><text x="483" y="77" font-size="12.5" font-weight="600">tuvastamine</text>
+          <text x="483" y="94" font-size="10.5" opacity=".65">kas A kattub E-ga?</text>
+          <text x="674" y="60" font-size="12.5" font-weight="600">Lõppjäreldus</text>
+          <text class="tt" data-pop="ot" x="674" y="79" font-size="11" opacity=".75">õigusliku tagajärje osas</text>
+        </g>
+        <g stroke="currentColor" stroke-width="1.5" marker-end="url(#ar-sub)" opacity=".8">
+          <line x1="176" y1="68" x2="200" y2="68"/><line x1="372" y1="68" x2="396" y2="68"/><line x1="568" y1="68" x2="592" y2="68"/>
+        </g>
+        <text x="8" y="18" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1.3" fill="currentColor" opacity=".6">SUUND: FAKTID NORMI ALLA, MITTE VASTUPIDI</text>
+        <text class="tt" data-pop="kumulatiivne" x="8" y="140" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="currentColor" opacity=".8">Lihtne või keeruline (kumulatiivne) koosseis — kõik tunnused peavad olema täidetud.</text>
+        <text class="tt" data-pop="valikuline" x="8" y="158" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="currentColor" opacity=".8">Valikuline (alternatiivne) koosseis — piisab vähemalt ühest tunnusest.</text>
+      </svg>
+    </div>
+    <figcaption>Õiguslikku tagajärge saab kohaldada <strong>ainult siis</strong>, kui elulised asjaolud vastavad faktilise koosseisu tunnustele. Kui kutsealusel ei ole ülalpeetavaid lapsi, ei saa ta <span class="tt" data-pop="kvts43">KVTS § 43 lg 1 p 1</span> alusel ajapikendust — üks koosseisu tunnus on täitmata ja tagajärge ei saa kohaldada.</figcaption>
+  </figure>
+
+  <div class="sec-head" style="margin-top:6px">
+    <h3 style="font-family:var(--display);font-size:19px">„Ja“ ja „või“ kõrvuti — proovi järele</h3>
+    <p class="claim" style="font-size:13.5px">Kaks vanglanormi, mõlemal kaks-kolm tunnust. Klõpsa tunnuseid, mis on kaasuses tõendatud, ja vaata, millal tagajärg saabub. Vasakpoolne on kumulatiivne, parempoolne valikuline.</p>
+  </div>
+
+  <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+    <div class="chk" data-chk="kum" data-mode="and">
+      <div class="ch"><span><strong><span class="tt" data-pop="vangs63_1">VangS § 63 lg 1</span></strong></span><span class="cl">kumulatiivne · JA</span></div>
+      <div class="cb">
+        <button type="button" class="ci" aria-pressed="false"><span class="bx"></span><span>(E1) on rikutud VangS-i, vangla sisekorraeeskirjade või muu õigusakti nõudeid</span><span class="jn">JA</span></button>
+        <button type="button" class="ci" aria-pressed="false"><span class="bx"></span><span>(E2) rikkumine oli süüline</span></button>
+      </div>
+      <div class="cr no"><span class="st">tagajärg</span><span class="rt"></span></div>
+    </div>
+    <div class="chk" data-chk="val" data-mode="or">
+      <div class="ch"><span><strong><span class="tt" data-pop="vangs25">VangS § 25 lg 1</span></strong></span><span class="cl">valikuline · VÕI</span></div>
+      <div class="cb">
+        <button type="button" class="ci" aria-pressed="false"><span class="bx"></span><span>neil on ühised lapsed</span><span class="jn">VÕI</span></button>
+        <button type="button" class="ci" aria-pressed="false"><span class="bx"></span><span>neil on ühine majapidamine</span><span class="jn">VÕI</span></button>
+        <button type="button" class="ci" aria-pressed="false"><span class="bx"></span><span>vähemalt kaks aastat väldanud kooselu enne karistuse kandmise algust</span></button>
+      </div>
+      <div class="cr no"><span class="st">tagajärg</span><span class="rt"></span></div>
+    </div>
+  </div>
+
+  <div class="tblwrap">
+    <table class="tbl">
+      <thead><tr><th>Faktiline koosseis normis</th><th>Asjaolud</th><th>Tõendid</th></tr></thead>
+      <tbody>
+        <tr><td class="fk"><span class="tt" data-pop="kvts2">kutsealusega</span>, so 17–27-aastase meessoost isikuga</td><td>20-aastane meesterahvas Mihkel Sits</td><td>isikut tõendav dokument</td></tr>
+        <tr><td class="fk">on alla kolmeaastase lapse</td><td>2-aastane laps Liisa Sits</td><td>sünnitunnistus</td></tr>
+        <tr><td class="fk">vanem</td><td>Mihkel on Liisa isa</td><td>sünnitunnistus</td></tr>
+        <tr><td class="fk">koos <span class="tt" data-pop="pks16">ülalpidamiskohustusega</span></td><td>Mihkel on abielus Senta Sitsiga, kes on Liisa ema</td><td>abielutunnistus, sünnitunnistus</td></tr>
+      </tbody>
+      <caption><strong>Järeldus: Mihkel Sitsile antakse ajapikendust.</strong> Tabel on subsumeerimise töövorm — vasakul normi tunnused lahti võetuna, keskel elulised asjaolud, paremal tõend iga asjaolu kohta. Tühi lahter paremas veerus tähendab tõendamata asjaolu ja seega tühja kohta lahendis.</caption>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════ OSA III ══════════ -->
+<div class="part" id="tolgendamine" style="--pc:var(--meta)">
+  <div class="bar"><span class="num">OSA III</span><h2>Tõlgendamine</h2></div>
+  <p>Mida teha, kui normi sõnastus ei ütle üheselt, mida ta tähendab — või kui normi üldse ei ole.</p>
+</div>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Neli võtet</span>
+    <h2>Tõlgendamise viisid</h2>
+    <p class="claim">Iga tõlgendamine peaks algama keelelisest. Ülejäänud kolm tulevad appi siis, kui sõnastusest üksi ei piisa — ja neid kasutatakse enamasti koos, mitte üksteise asemel.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card" style="--c:var(--meta)">
+      <span class="k">1 · alati esimesena</span>
+      <h3><span class="tt" data-pop="grammatiline">Grammatiline</span></h3>
+      <p>Eesti keele reeglid, erialaterminid, õigusterminid. Õiguskeel on üldkeele erijuht — vahe on täpsusastmes. Siin tulevad välja ka <span class="tt" data-pop="maaratlemata">määratlemata õigusmõisted</span>.</p>
+    </div>
+    <div class="card" style="--c:var(--meta)">
+      <span class="k">2 · kus norm paikneb</span>
+      <h3><span class="tt" data-pop="systemaatiline">Süstemaatiline</span></h3>
+      <p>Normi mõistetakse eri paragrahvide tekstide omavaheliste seoste kaudu. Loogiline pool: <span class="tt" data-pop="sullogism">süllogism</span>, mõistete maht, sootunnused.</p>
+    </div>
+    <div class="card" style="--c:var(--meta)">
+      <span class="k">3 · kunagi kehtinud õigus</span>
+      <h3><span class="tt" data-pop="ajalooline">Ajalooline</span></h3>
+      <p>Sätte tekst vastuvõtmise ajal, seletuskirjad, stenogrammid, protokollid, toonane meedia. Konspektis ka <em>subjektiiv-teleoloogiline</em>: küsimus on ajaloolise normilooja tahtest.</p>
+    </div>
+    <div class="card" style="--c:var(--meta)">
+      <span class="k">4 · kehtiv õigus</span>
+      <h3><span class="tt" data-pop="teleoloogiline">Teleoloogiline</span></h3>
+      <p>Sätte tähendus ühiskonnas täna. Konspektis <em>objektiiv-teleoloogiline</em>. Mõnikord on eesmärk seaduse tekstis otse kirjas.</p>
+      <span class="ex"><span class="tt" data-pop="avts1">AvTS § 1</span> — seaduse eesmärk on tekstis</span>
+    </div>
+  </div>
+
+  <p class="claim" style="font-size:13.5px">Riigikohtu näide kõnniteel parkimisest näitab, kuidas võtted vastandlikke tulemusi annavad: <em>grammatiline ja süstemaatiline</em> tõlgendus ütleb, et kõnnitee on tee ja sellele laienevad üldnõuded; <em>eesmärgipärane</em> tõlgendus ütleb, et kõnnitee on tee eriliik, mis on ette nähtud jalakäija ohutuse tagamiseks. Just seetõttu tuleb tõlgendusviis lahendis <strong>nimetada ja põhjendada</strong>, mitte vaikimisi valida.</p>
+
+  <div class="vv">
+    <div class="vh"><b>Tõlgendusvõtete nimetusi on üheksa ja ühes loetelus on üks võte puudu</b><span>materjalides kaks versiooni</span></div>
+    <div class="vg">
+      <div class="vc"><span class="vl">Loetelu 1 — loengu slaidid</span><ul><li>grammatiline</li><li>süstemaatiline</li><li>ajalooline</li><li>teleoloogiline</li></ul></div>
+      <div class="vc"><span class="vl">Loetelu 2 — konspekt</span><ul><li>literaalne, lingvistiline, grammatiline ehk keeleline</li><li>süstemaatilis-loogiline</li><li>objektiiv-teleoloogiline</li><li>subjektiiv-teleoloogiline ehk ajalooline</li></ul></div>
+      <div class="vc"><span class="vl">Loetelu 3 — konspekt, rakendamise etappide juures</span><ul><li>keeleline</li><li>süstemaatiline</li><li>ajalooline</li></ul><p style="margin-top:8px;color:var(--dep);font-size:12.5px"><strong>Teleoloogiline on puudu</strong> — kuigi sama dokument käsitleb hiljem nelja võtet.</p></div>
+    </div>
+    <div class="vf">Viies nimetus tuleb kõnnitee-näitest, kus teleoloogilist nimetatakse <strong>eesmärgipäraseks</strong> tõlgendamiseks. Vastavust loetelude 1 ja 2 vahel allikad ise välja ei ütle — ülaltoodud kaardid seovad need sisukirjelduse põhjal.</div>
+  </div>
+
+  <div class="qaset">
+    <span class="qh">Kontrolli ennast</span>
+    <details class="qa"><summary>Millisest tõlgendusvõttest tuleb alati alustada ja miks?</summary>
+      <div class="ans">Keelelisest ehk grammatilisest. Iga tõlgendamine peab saama alguse seaduse sättest, ja selleks peab teadma keelt, mille kaudu seadusandja on tegelikkuse õiguskeelde üle kandnud. Õiguskeel on üldkeele erijuht, täpsem kui üldkeel.</div></details>
+    <details class="qa"><summary>Mis on objektiiv- ja subjektiiv-teleoloogilise tõlgendamise vahe?</summary>
+      <div class="ans">Objektiiv-teleoloogilise puhul on tähtis <strong>kehtiv</strong> õigus ja normi eesmärk täna; subjektiiv-teleoloogilise ehk ajaloolise puhul <strong>kunagi kehtinud</strong> õigus ja ajaloolise normilooja tahe.</div></details>
+    <details class="qa"><summary>Vanglaametnik peab sisustama mõiste „vangla julgeolek“. Mis järjekorras ta allikaid võtab?</summary>
+      <div class="ans">1) legaaldefinitsioon — kas samas või muus aktis; 2) haldus- ja kohtupraktika; 3) kommentaarid ja õigusteadlaste kirjutised; 4) alles siis oma mõttekäik, mis tuleb lahendis välja kirjutada.</div></details>
+  </div>
+
+  <div data-ex="tolg"></div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Järjekord loeb</span>
+    <h2>Määratlemata õigusmõistele sisu andmine</h2>
+    <p class="claim">Kui koosseisu tunnus on „avalik huvi“, „oluline oht“ või „diskrediteeriv“, ei tohi hakata kohe ise mõtlema. Neli sammu kindlas järjekorras — oma peaga mõtlemine on viimane, mitte esimene.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step"><b><span class="tt" data-pop="legaaldef">Legaaldefinitsioon</span></b><span class="d">Kas samas seaduses on mõiste avatud? Kas on viide muus õigusaktis asuvale legaaldefinitsioonile? Kas definitsioon on mõnes muus aktis olemas, aga viidet pole? Kui legaaldefinitsiooni üldse ei ole — edasi. Näiteks <span class="tt" data-pop="kors5">KorS § 5</span> avab korraga mitu mõistet.</span></div>
+    <div class="step"><b>Haldus- ja kohtupraktika</b><span class="d">Kuidas on mõistet sisustanud Riigikohus ja halduspraktika? Näide: „diskrediteerimine“ <span class="tt" data-pop="ats51">ATS § 51 lg 4</span> mõttes sai sisu <span class="tt" data-pop="rk3313">Riigikohtu lahendis 3-3-1-70-03</span>.</span></div>
+    <div class="step"><b>Kommentaarid ja õigusteadlaste kirjutised</b><span class="d">Seaduste kommenteeritud väljaanded ja erialakirjandus.</span></div>
+    <div class="step"><b>Alles siis tuleb ise mõtlema hakata</b><span class="d">Ja siis tuleb see mõttekäik lahendis välja kirjutada, sest miski muu seda ei kanna.</span></div>
+  </div>
+
+  <div data-ex="maar"></div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Kaks häda</span>
+    <h2><span class="tt" data-pop="lunk">Lünk</span> ja <span class="tt" data-pop="vastuolu">vastuolu</span></h2>
+    <p class="claim">Neid aetakse pidevalt segi, aga vahe on lihtne ja loetav ühest arvust: <strong>mitu normi elulist situatsiooni reguleerib.</strong> Sellest sõltub ka ületamise võte.</p>
+  </div>
+
+  <div class="tblwrap">
+    <table class="tbl">
+      <thead><tr><th></th><th>Norme, mis reguleerivad</th><th>Erinevad, teineteist välistavad tagajärjed</th><th>Ületamise võtted</th></tr></thead>
+      <tbody>
+        <tr><td class="fk">Lünk</td><td>0 — normi ei ole</td><td>—</td><td><span class="tt" data-pop="analoogia">analoogia</span>, rõhutamine, vastandamine</td></tr>
+        <tr><td class="fk">Vastuolu</td><td>2 + n</td><td>2 + n</td><td>formaalne hierarhia, ajaline hierarhia, erinorm prevaleerib üldnormi ees</td></tr>
+      </tbody>
+      <caption>Lünka ületatakse <strong>tõlgendamise teel</strong>. Vastuolu ületatakse allpool olevate kollisioonireeglitega. Kontrollküsimus kursuselt: kui kaitseväeteenistuja leiab, et KVTS keelab tal erakonda kuuluda, aga avaliku teenistuse seaduses sellist piirangut pole — kas see on lünk või vastuolu?</caption>
+    </table>
+  </div>
+
+  <div class="rules">
+    <div class="rule hd"><div>Reegel</div><div class="axn">Telg</div><div>Mida ütleb</div></div>
+    <div class="rule">
+      <div class="lat"><span class="tt" data-pop="superior">lex superior derogat legi inferiori</span></div>
+      <div class="axn">formaalne hierarhia</div>
+      <div>Kõrgema astme norm tõrjub madalama. Määrus ei saa seadust muuta.</div>
+    </div>
+    <div class="rule">
+      <div class="lat"><span class="tt" data-pop="specialis">lex specialis derogat legi generali</span></div>
+      <div class="axn">üldisuse aste</div>
+      <div>Erinorm tõrjub üldnormi. Seetõttu tuleb alati küsida, kas leitud normile on olemas täpsem.</div>
+    </div>
+    <div class="rule">
+      <div class="lat"><span class="tt" data-pop="posterior">lex posterior derogat legi priori</span></div>
+      <div class="axn">ajaline hierarhia</div>
+      <div>Hilisem norm tõrjub varasema — aga ainult sama astme sees.</div>
+    </div>
+  </div>
+
+  <div data-ex="lunk"></div>
+</section>
+
+<!-- ══════════ OSA IV ══════════ -->
+<div class="part" id="meetod" style="--pc:var(--accent)">
+  <div class="bar"><span class="num">OSA IV</span><h2>Meetod</h2></div>
+  <p>Kolm eri kontrollimisviisi ja lahendi ülesehitus.</p>
+</div>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Lahendi ülesehitus</span>
+    <h2>Õiguslik lahend <span class="tt" data-pop="analyys">analüüsivas stiilis</span></h2>
+    <p class="claim">Viis sammu, samas järjekorras iga kord. <span class="tt" data-pop="otsustus">Otsustusstiilis</span> lahend lühendab neid samme, aga ei tohi neist ühtegi vahele jätta — põhistatus peab olema sellisel tasemel, et lahendini jõudmine oleks hiljem kontrollitav.</p>
+  </div>
+
+  <div class="steps">
+    <div class="step"><b>Õiguslik küsimus</b><span class="d">Mis on see küsimus, millele vastust otsitakse.</span></div>
+    <div class="step"><b>Õigusnorm: faktiline koosseis ja õiguslik tagajärg</b><span class="d">Norm „lammutatakse juppideks“. Viide paragrahvi, lõike ja punkti täpsusega.</span></div>
+    <div class="step"><b>Elulised asjaolud</b><span class="d">Ainult see, mis kaasuse tekstis on. Midagi juurde eeldada ei ole lubatud.</span></div>
+    <div class="step"><b>Koosseisu tunnuste ja asjaolude võrdlus</b><span class="d">Subsumeerimine tunnuse kaupa, vajadusel tõlgendamine.</span></div>
+    <div class="step"><b>Järeldus, kas tagajärg võib või võis saabuda</b><span class="d">Alguses püstitatud hüpotees ja saadud tulemus peavad olema omavahel vastavuses.</span></div>
+  </div>
+
+  <div class="vv">
+    <div class="vh"><b>Analüüsistiilis lahendil on viis või seitse sammu</b><span>materjalides kaks versiooni</span></div>
+    <div class="vg">
+      <div class="vc">
+        <span class="vl">Loengu slaidid — viis sammu</span>
+        <ol><li>õiguslik küsimus</li><li>õigusnorm: faktiline koosseis; õiguslik tagajärg</li><li>elulised asjaolud</li><li>faktilise koosseisu tunnuste ja eluliste asjaolude võrdlus</li><li>järeldus, kas tagajärg võib/võis saabuda</li></ol>
+        <p style="margin-top:8px;color:var(--muted);font-size:12.5px">Ülaltoodud loetelu järgib seda.</p>
+      </div>
+      <div class="vc">
+        <span class="vl">Konspekt — seitse sammu</span>
+        <ol><li>juhtumi asjaoludest lähtuvalt õigusliku probleemi sõnastamine</li><li>lahendamise eeldused</li><li>kohane õigusnorm</li><li>subsumptsioon</li><li><strong>lahendi meetodi valik</strong></li><li>tulemuste kirja panek ja arutelu</li><li>järeldused</li></ol>
+        <p style="margin-top:8px;color:var(--muted);font-size:12.5px">Sisaldab sammu „lahendi meetodi valik“, mida F5 loetelus ei ole. Kasutab sõna „subsumptsioon“, mujal allikates „subsumeerimine“.</p>
+      </div>
+    </div>
+    <div class="vf">Konspekt annab lisaks veel <strong>kolmanda</strong> loetelu — „kaasuse lahendi kirja paneku struktuuri näide“, mis algab faktidest ja osapoolte väidetest ning jõuab subsumeerimise kaudu otsustuseni. Otsustusstiilis lahendi struktuur on seevastu lühike: otsustus + otsuse olulisemad põhistused.</div>
+  </div>
+
+  <div class="qaset">
+    <span class="qh">Kontrolli ennast</span>
+    <details class="qa"><summary>Millal valida otsustusstiil ja mis on selle piir?</summary>
+      <div class="ans">Kui on vaja kiiresti otsuseni jõuda, asjaolud on selged ja normivalik lihtsam. Piir: põhistatus peab olema sellises kujus ja ulatuses, et otsuse asjaolude ja lahendini jõudmine oleks <strong>hiljem kontrollitav</strong>. Faktilised ja õiguslikud põhjendused pigem konstateeritakse kui analüüsitakse.</div></details>
+    <details class="qa"><summary>Kui täpne peab olema viide õigusnormile?</summary>
+      <div class="ans">Paragrahvi, lõike ja punkti täpsusega. „VangS-i järgi“ ei ole viide; „VangS § 63 lg 1 p 4“ on.</div></details>
+    <details class="qa"><summary>Kaasuses ei ole öeldud, kas kinnipeetav oli rikkumise ajal kaine. Kas tohin eeldada, et oli?</summary>
+      <div class="ans">Ei. Kasutada tohib üksnes neid andmeid, mis on kaasuse tekstis. Ise midagi juurde lisada või eeldada ei ole lubatud. Kõik esitatud asjaolud loetakse tõendatuks, kui pole viidet muule.</div></details>
+  </div>
+</section>
+
+<!-- ══════════ OSA V ══════════ -->
+<div class="part" id="kaasused" style="--pc:var(--proc)">
+  <div class="bar"><span class="num">OSA V</span><h2>Kaasused</h2></div>
+  <p>Kolm vanglakaasust kahaneva abiga ja üks vigade otsimise harjutus. Olukorrad ja tegelased on välja mõeldud; kõik sätted on kursuse materjalidest.</p>
+</div>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Kaasus 1</span>
+    <h2>Täielikult lahti kirjutatud</h2>
+    <p class="claim">Loe läbi ja jälgi, kus iga samm normi küljest kinni haarab. Struktuur järgib <span class="tt" data-pop="analyys">analüüsivat stiili</span>.</p>
+  </div>
+
+  <div class="case">
+    <div class="cah"><span class="n">K1</span><h3>Kartser noorele kinnipeetavale</h3><span class="lvl">kogu lahendus ees</span></div>
+    <div class="fab"><span class="fl">Kaasus</span>Kinnipeetav Rasmus Kiur, sünniaeg 4. märts 2006, on karistust kandnud alates 2025. aasta septembrist. 12. veebruaril 2026 keeldub ta korduvalt täitmast vanglateenistuse ametniku seaduslikku korraldust naasta oma kambrisse ja lõhub seejuures ukseluku. Vangla direktor kavatseb määrata talle distsiplinaarkaristusena kartserisse paigutamise <strong>30 ööpäevaks</strong>. Kas ta tohib?</div>
+    <div class="stp">
+      <div><b>1 · Õiguslik küsimus</b>Kas vangla direktor võib määrata Rasmus Kiurile kartserisse paigutamise 30 ööpäevaks?</div>
+      <div><b>2 · Õigusnorm</b>Põhinorm on <span class="tt" data-pop="vangs63_1">VangS § 63 lg 1</span>. <mark class="h">Faktiline koosseis</mark>: (E1) on rikutud VangS-i, vangla sisekorraeeskirjade või muu õigusakti nõudeid, ja (E2) rikkumine oli süüline — need on kumulatiivsed. <mark class="t">Õiguslik tagajärg</mark>: võib kohaldada distsiplinaarkaristusi, sh kartserisse paigutamist kuni 45 ööpäevaks — valikuline tagajärg, seega valikudiskretsioon.<br><br>Koosseisu tunnust „nõuete rikkumine“ sisustab <span class="tt" data-pop="vangs67">VangS § 67 lg 1</span>: kinnipeetav on kohustatud alluma vanglateenistuse ametnike seaduslikele korraldustele.<br><br>Kohaldub ka kitsendav norm <span class="tt" data-pop="vangs63_2">VangS § 63 lg 2</span>, mille tunnust „noor kinnipeetav“ sisustab seletav norm <span class="tt" data-pop="vangs77">VangS § 77</span>.</div>
+      <div><b>3 · Elulised asjaolud</b>Rasmus Kiur on kinnipeetav. Ta keeldus korduvalt täitmast ametniku seaduslikku korraldust ja lõhkus ukseluku. Karistust kannab alates septembrist 2025. Sündinud 4. märtsil 2006.</div>
+      <div><b>4 · Subsumeerimine</b><strong>E1 — nõuete rikkumine.</strong> VangS § 67 lg 1 kohustab kinnipeetavat alluma ametnike seaduslikele korraldustele. Rasmus keeldus korduvalt. Tunnus on täidetud.<br><br><strong>E2 — süülisus.</strong> Keeldumine oli korduv ja teadlik, luku lõhkumine tahtlik tegu. Tunnus on täidetud.<br><br>Mõlemad kumulatiivsed tunnused on täidetud, seega tagajärge <em>võib</em> kohaldada.<br><br><strong>Kitsendav norm.</strong> VangS § 77 järgi on noor kinnipeetav isik, kes on karistuse täitmisele pööramise ajal noorem kui 21-aastane. Karistuse täitmisele pööramise ajal — september 2025 — oli Rasmus 19-aastane. Tunnus on täidetud, järelikult kohaldub VangS § 63 lg 2.</div>
+      <div><b>5 · Järeldus</b>Distsiplinaarkaristust <em>võib</em> kohaldada, aga kartseri ülemmäär ei ole selles kaasuses 45, vaid <strong>20 ööpäeva</strong>. Kavandatud 30 ööpäeva on õigusvastane. Ühtlasi on tegu valikudiskretsiooniga: direktor peab põhjendama, miks just kartser ja miks just see kestus.<br><br><strong>Miks on VangS § 77 siin otsustav:</strong> ilma selle seletava normita loeks rakendaja § 63 lg 1 ja jõuaks numbrini 45. Spetsialiseeritud norm ei anna ise tagajärge, aga muudab täieliku normi tulemust.</div>
+    </div>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Kaasus 2</span>
+    <h2>Poolik — lõpeta ise</h2>
+    <p class="claim">Norm ja koosseis on ette antud. Subsumeerimine ja järeldus on sinu teha; vastus on peidetud.</p>
+  </div>
+
+  <div class="case">
+    <div class="cah"><span class="n">K2</span><h3>Pikaajaline kokkusaamine faktilise abikaasaga</h3><span class="lvl">pool ees</span></div>
+    <div class="fab"><span class="fl">Kaasus</span>Kinnipeetav Jaan Pääsuke taotleb pikaajalist kokkusaamist Tiina Tuulega. Nad ei ole abielus. Ühiseid lapsi neil ei ole. Nad elasid enne Jaani karistuse kandmise algust koos Tartus ühes üürikorteris — üürileping on mõlema nimel ja kestis 14 kuud. Taotlusele on lisatud üürileping ja kolme majaelaniku ütlused.</div>
+    <div class="stp">
+      <div><b>1 · Õiguslik küsimus</b>Kas Jaan Pääsukesele tuleb lubada pikaajaline kokkusaamine Tiina Tuulega?</div>
+      <div><b>2 · Õigusnorm</b><span class="tt" data-pop="vangs25">VangS § 25 lg 1 teine lause</span>. <mark class="h">Koosseis</mark> on <strong>valikuline</strong>: ühised lapsed <em>või</em> ühine majapidamine <em>või</em> vähemalt kaks aastat väldanud kooselu enne karistuse kandmise algust. <mark class="t">Tagajärg</mark>: lubatakse.</div>
+      <div><b>3 · Sinu järg</b>Võta iga alternatiiv eraldi ja märgi, kas ta on tõendatud. Pea meeles, mida valikuline koosseis nõuab — ja mida ta <em>ei</em> nõua.</div>
+    </div>
+  </div>
+
+  <div class="qaset">
+    <span class="qh">Vastus</span>
+    <details class="qa"><summary>Ava lahendus</summary>
+      <div class="ans"><strong>Alternatiiv 1 — ühised lapsed.</strong> Ei ole täidetud.<br><br>
+      <strong>Alternatiiv 2 — ühine majapidamine.</strong> Mõlema nimel olev üürileping, ühine elukoht ja majaelanike ütlused räägivad selle poolt. Kursuse tõendamistabel loetleb just neid tõendeid: üürileping, sissekirjutus, pangadokumendid kommunaalarvete maksmise kohta, majaelanike ütlused, KÜ kinnitus, ostutšekid. Tunnus on tõendatud.<br><br>
+      <strong>Alternatiiv 3 — vähemalt kaks aastat kooselu.</strong> 14 kuud ei ole kaks aastat. Ei ole täidetud.<br><br>
+      <strong>Järeldus:</strong> kokkusaamine tuleb lubada. Valikulise koosseisu puhul piisab ühest täidetud tunnusest — kaks täitmata alternatiivi ei takista midagi. Kui koosseis oleks kumulatiivne, oleks vastus vastupidine.<br><br>
+      <strong>Tüüpviga:</strong> lugeda kolm alternatiivi kolmeks nõudeks ja keelduda, sest „kaks tingimust kolmest ei ole täidetud“.</div></details>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Kaasus 3</span>
+    <h2>Ainult küsimus</h2>
+    <p class="claim">Ei normi, ei koosseisu, ei vihjeid. Sama, mis eksamil.</p>
+  </div>
+
+  <div class="case">
+    <div class="cah"><span class="n">K3</span><h3>Karistus ilma ärakuulamiseta</h3><span class="lvl">ilma abita</span></div>
+    <div class="fab"><span class="fl">Kaasus</span>Vanglateenistuse ametnik koostab 3. aprillil kinnipeetav Marek Sõnumi kohta ettekande, mille kohaselt Marek rikkus vangla sisekorraeeskirju. Samal päeval määrab vangla direktor talle noomituse. Marekit ei kutsutud kordagi vestlusele ega antud võimalust oma seisukohta esitada. Otsuses on kirjas ainult: „Sisekorraeeskirjade rikkumise eest — noomitus.“ Marek leiab, et otsus on õigusvastane.<br><br><strong>Kas tal on õigus? Millistele normidele tuginedes?</strong></div>
+  </div>
+
+  <div class="qaset">
+    <span class="qh">Vihje, kui kinni jääd</span>
+    <details class="qa"><summary>Millist kahte asja peaks lisaks distsiplinaarnormile kontrollima?</summary>
+      <div class="ans">Esiteks: mida nõuab seadus <em>enne</em> haldusakti andmist — vt <span class="tt" data-pop="hms40">HMS § 40 lg 1</span>. Teiseks: mida nõuab kursuse loetelu õiguse rakendamise printsiipidest, eriti neljas neist. Kolmandaks, kui tahad täielikku vastust: kas karistuse määramine on siin imperatiivne või kaalutlusõiguslik, ja mida see põhjendamise kohta tähendab.</div></details>
+  </div>
+</section>
+
+<section class="stack">
+  <div class="sec-head">
+    <span class="eyebrow">Harjutus</span>
+    <h2>Leia viga</h2>
+    <p class="claim">Kolm vanglakaasust, kõik valesti subsumeeritud. Iga lõigu lõpus on peidetud, mis täpselt valesti läks. Proovi ise esimesena leida.</p>
+  </div>
+
+  <div class="qaset">
+    <div class="case" style="border-left:3px solid var(--dep)">
+      <div class="fab"><span class="fl">Viga 1</span>„Kinnipeetav lõhkus kambri valgusti. VangS § 63 lg 1 järgi võib nõuete rikkumise eest kohaldada distsiplinaarkaristusi, sh kartserit kuni 45 ööpäevaks. Kuna valgusti lõhkumine on nõuete rikkumine, määran kartseri 40 ööpäevaks.“</div>
+    </div>
+    <details class="qa"><summary>Mis siin valesti läks?</summary>
+      <div class="ans">Koosseisust on kontrollitud ainult <strong>üks</strong> tunnus. VangS § 63 lg 1 koosseis on kumulatiivne: lisaks nõuete rikkumisele (E1) peab rikkumine olema <strong>süüline</strong> (E2). Süülisust ei ole üldse käsitletud. Kumulatiivse koosseisu puhul peavad kõik tunnused olema täidetud.<br><br>Teine viga: tagajärg on valikuline, seega on tegu valikudiskretsiooniga — karistuse liigi ja määra valik tuleb põhjendada, mitte lihtsalt välja öelda.</div></details>
+
+    <div class="case" style="border-left:3px solid var(--dep)">
+      <div class="fab"><span class="fl">Viga 2</span>„Kinnipeetav on 20-aastane. VangS § 63 lg 2 järgi võib noort kinnipeetavat kartserisse paigutada kuni 20 ööpäevaks. Ta on praegu 20-aastane, seega kohaldub piirang.“</div>
+    </div>
+    <details class="qa"><summary>Mis siin valesti läks?</summary>
+      <div class="ans">Vanust on mõõdetud <strong>vales ajahetkes</strong>. VangS § 77 ütleb, et noor kinnipeetav on isik, kes on noorem kui 21-aastane <strong>karistuse täitmisele pööramise ajal</strong> — mitte praegu. Kui isik pööras karistust täitma 22-aastaselt ja on praegu 20, ei ole ta noor kinnipeetav; kui ta pööras 19-aastaselt ja on praegu 23, siis on.<br><br>Seletava normi tunnus tuleb võtta täies ulatuses, koos ajamääratlusega. Tunnuse poolik lugemine on üks sagedasemaid subsumeerimisvigu.</div></details>
+
+    <div class="case" style="border-left:3px solid var(--dep)">
+      <div class="fab"><span class="fl">Viga 3</span>„Kinnipeetav taotleb pikaajalist kokkusaamist. Ühiseid lapsi ei ole ja kooselu kestis poolteist aastat. Kaks tingimust kolmest on täitmata, seega tuleb taotlus rahuldamata jätta.“</div>
+    </div>
+    <details class="qa"><summary>Mis siin valesti läks?</summary>
+      <div class="ans">Valikulist koosseisu on loetud kumulatiivseks. VangS § 25 lg 1 teises lauses on tingimused ühendatud sõnaga <strong>või</strong>, mitte <strong>ja</strong>. Piisab ühest. Lahendaja oleks pidanud kontrollima kolmandat alternatiivi — ühist majapidamist — mida ta üldse ei maininud.<br><br>Lisaks on järeldus tehtud loendamise, mitte subsumeerimise teel: „kaks kolmest“ ei ole õiguslik argument.</div></details>
+  </div>
+</section>
+
+<footer>
+  <strong>Sätete sõnastus.</strong> Hüpikakende sildid ütlevad, kust tekst tuleb. „Kursuse materjalist“ tähendab, et tekst on sõna-sõnalt loengumaterjalist. „Sõnastus kontrollimata“ tähendab, et sätte teksti ei olnud kursuse materjalides ega ole see Riigi Teatajast kinnitatud.<br><br>
+  <strong>Kontrolli kehtiv redaktsioon Riigi Teatajast</strong> enne, kui sätet lahendis kasutad. Lahendis peab viide olema paragrahvi, lõike ja punkti täpsusega.<br><br>
+  <strong>Ookrekarva kastid</strong> näitavad kohti, kus kursuse materjalid annavad sama asja kohta kaks erinevat versiooni. Need ei ole vead lehel — neid tasub eksamiks teada mõlemat.<br><br>
+  <strong>Kaasuste olukorrad ja tegelased on välja mõeldud.</strong> Sätted ei ole.
+</footer>
+
+</div>
+
+<script>
+const SRC = {
+  ffail:'Kursuse materjalist',
+  kontrollimata:'Sõnastus kontrollimata'
+};
+const RTNOTE = 'Kontrolli kehtiv sõnastus Riigi Teatajast enne lahendis kasutamist.';
+
+const POP = {
+/* ─── mõisted ─── */
+hypotees:{k:'t',t:'Hüpotees',b:'Normi „kui“-pool. Loetleb olukorrad, mille puhul norm üldse mängu tuleb. Nagu retsepti alguses olev koostisosade nimekiri: kui need asjad on olemas, saab edasi minna.'},
+dispositsioon:{k:'t',t:'Dispositsioon',b:'Normi käsk ise: mida pead, tohid või ei tohi teha. Kui hüpotees ütleb „kui sajab vihma“, siis dispositsioon ütleb „siis võta vihmavari“.',n:'Kaheosalises käsitluses nimetatakse dispositsiooniks primaarnormi õiguslikku tagajärge. Tähendus sõltub käsitlusest — eksamil lähtu kursuse materjalist.'},
+sanktsioon:{k:'t',t:'Sanktsioon',b:'Mis juhtub, kui käsku ei täida: trahv, vangistus, distsiplinaarkaristus. Normi „vastasel juhul“-pool.'},
+fk:{k:'t',t:'Faktiline koosseis',b:'Kõik tingimused, mis peavad elus täidetud olema, et norm kohalduks. Sama asi mis hüpotees, lihtsalt teise nimega — kaheosalises käsitluses öeldakse nii. Kutsutakse ka „eeldusteks normis“.'},
+ot:{k:'t',t:'Õiguslik tagajärg',b:'Mis normi kohaldamisel juhtub. Kas tekib kohustus või õigus (dispositsioon) või karistus (sanktsioon).'},
+primaar:{k:'t',t:'Primaarnorm',b:'Norm, mis ütleb, kuidas käituda. „Kinnipeetav peab täitma sisekorraeeskirju.“ Esimene ring — see kehtib kohe ja kõigile, kellele norm suunatud on.'},
+sekundaar:{k:'t',t:'Sekundaarnorm',b:'Norm, mis ütleb, mis juhtub, kui esimest ei täidetud. „Rikkumise eest võib määrata kartseri.“ Teine ring — käivitub alles siis, kui primaarnormi rikuti.'},
+taielik:{k:'t',t:'Täielik õigusnorm',b:'Norm, millel on mõlemad pooled: millal ta kohaldub ja mis siis juhtub. Ainult sellise normi alusel saab otsuse teha.'},
+spetsnorm:{k:'t',t:'Spetsialiseeritud norm',b:'Norm, millel kaheosaline struktuur puudub. Ta ainult viitab, seletab või kitsendab ega kohaldu üksi. Nagu sõnaraamat või joonealune märkus — omaette ta midagi ei otsusta.'},
+seletav:{k:'t',t:'Seletav norm',b:'Avab mõiste tähenduse. Ise ta midagi ei käsi ega keela. „Noor kinnipeetav on isik, kes on noorem kui 21-aastane.“'},
+viitav:{k:'t',t:'Viitav norm',b:'Ütleb „vaata sealt“. Ei korda teise normi sisu, vaid saadab sinna. Seadusandja väldib nii kordamist.'},
+kitsendav:{k:'t',t:'Kitsendav norm',b:'Ütleb, millisel juhul põhireegel ei kehti või kehtib teisiti. Erand. Ilma temata laieneks põhireegel ka juhtumitele, kuhu ta ei tohi ulatuda.'},
+blankett:{k:'t',t:'Blanketnorm',b:'Norm, mille sisu tuleb mujalt — nt „ohutusnõuete rikkumine“, kus nõuded ise on kirjas hoopis mingis eeskirjas. Tühi lahter, mille keegi teine täidab.'},
+fiktsioon:{k:'t',t:'Fiktsioon',b:'Seadus teeskleb: „loetakse…“. Miski ei ole päriselt nii, aga õiguslikult koheldakse nii.'},
+presumptsioon:{k:'t',t:'Presumptsioon',b:'Seadus eeldab midagi, kuni vastupidist ei tõendata. Süütuse presumptsioon: sa oled süütu, kuni keegi tõestab vastupidist. Ei muuda tagajärge, vaid seda, kes peab tõendama.'},
+kaitumisnorm:{k:'t',t:'Käitumisnorm',b:'Norm, mis ütleb inimesele, kuidas käituda — kohustab, keelab või lubab. Õigus ise ongi kirjapandud käitumisnormide kogum, mille järgimine on tagatud riikliku sunnijõuga.'},
+padevusnorm:{k:'t',t:'Pädevusnorm',b:'Ütleb, kes millega tegeleda tohib. Jaotab tööd ametiasutuste vahel. Kui asutus tegutseb väljaspool oma pädevust, on tema tegu õigusvastane, isegi kui sisuliselt õige.'},
+sekkumisnorm:{k:'t',t:'Sekkumist õigustav norm',b:'Annab riigile õigusliku aluse sinu õigustesse sekkuda — peatada, küsitleda, läbi otsida. Ilma sellise normita on sekkumine õigusvastane. Nimetatakse ka „õiguslikuks aluseks“.'},
+noudealus:{k:'t',t:'Nõude alus',b:'Norm, millele saad ise tugineda, kui midagi nõuad. Sinu subjektiivse õiguse allikas. Kaasuse lahendamine algab tihti just küsimusest: kus on nõude alus?'},
+volitusnorm:{k:'t',t:'Volitusnorm',b:'Norm, mis annab kellelegi loa uusi reegleid kehtestada. Ilma selleta ei tohi minister määrust anda — nagu ei tohi ilma volikirjata kellegi eest allkirja anda.'},
+legaaldef:{k:'t',t:'Legaaldefinitsioon',b:'Seaduses endas antud mõiste seletus — seaduse oma sõnaraamat. Väljend „käesoleva seaduse tähenduses“ tähendab, et see tähendus kehtib ainult selles seaduses.'},
+menetlusnorm:{k:'t',t:'Menetlusnorm',b:'Ütleb, kuidas oma õigust kätte saada: tähtajad, vormid, kellele avaldus esitada. Mäng võib olla võidetav, aga kui reeglite järgi valesti mängid, kaotad ikka.'},
+imperatiivne:{k:'t',t:'Imperatiivne norm',b:'Kohustuslik norm, millest ei saa kokkuleppel mööda minna. Kaks inimest ei saa omavahel kokku leppida, et neile see seadus ei kehti.'},
+dispositiivne:{k:'t',t:'Dispositiivne norm',b:'Norm, mis kehtib ainult siis, kui pooled ise midagi muud kokku ei lepi. Nagu seadme tehaseseadistus, mille saab ümber sättida.',n:'Kaasuses tuleb seetõttu enne normile tuginemist alati kontrollida, mida pooled kokku leppisid.'},
+diskretsioon:{k:'t',t:'Kaalutlusõigus ehk diskretsioon',b:'Ametniku luba ise otsustada. Seadus ei anna üht ainsat vastust, vaid jätab valiku — ja siis tuleb see valik ära põhjendada.'},
+otsustusd:{k:'t',t:'Otsustusdiskretsioon',b:'„Võib“ — ametnik otsustab, kas üldse midagi teha. Ta võib ka mitte midagi teha, kui see on põhjendatud.'},
+valikud:{k:'t',t:'Valikudiskretsioon',b:'Midagi tuleb teha, aga ametnik valib, mida täpselt — kas noomitus või kartser. Valik tehakse variantide vahel, mitte tegutsemise ja mittetegutsemise vahel.'},
+absoluutne:{k:'t',t:'Absoluutselt määratletud dispositsioon',b:'Määrab täpselt ja ammendavalt kindlaks poolte õigused ja kohustused, jätmata valikuvabadust.'},
+suhteline:{k:'t',t:'Suhteliselt määratletud dispositsioon',b:'Annab pooltele võimaluse seadusega kindlaksmääratud õigusi ja kohustusi täpsustada või valida kahe või enama käitumisvariandi vahel.'},
+kumulatiivne:{k:'t',t:'Keeruline ehk kumulatiivne',b:'Kõik tunnused peavad korraga olemas olema — neid ühendab „ja“. Kui üks puudub, norm ei kohaldu. Nagu uks, mille avamiseks on vaja korraga kolme võtit.'},
+valikuline:{k:'t',t:'Valikuline ehk alternatiivne',b:'Piisab ühest tunnusest — neid ühendab „või“. Nagu uks, mille avab ükskõik milline kolmest võtmest.'},
+subsum:{k:'t',t:'Subsumeerimine',b:'Elulise juhtumi mahutamine normi alla. Võtad normi tunnuste nimekirja ja märgid iga tunnuse juurde linnukese, kas päriselus juhtunu seda katab. Kui kõik vajalikud linnukesed on olemas, norm kohaldub.',n:'Suund on alati faktid → normi alla, mitte vastupidi. Normi faktide järgi painutada ei tohi.'},
+yldakt:{k:'t',t:'Üldakt',b:'Reegel, mis kehtib kõigile ja määramata arvule juhtudele. Seadus, määrus. Abstraktne ja impersonaalne — ei nimeta kedagi nimepidi.'},
+yksikakt:{k:'t',t:'Üksikakt',b:'Otsus ühe konkreetse inimese ja ühe konkreetse olukorra kohta. Sinu juhiluba, sinu trahv, sinu kohtuotsus. Antakse alati üldakti alusel.'},
+toiming:{k:'t',t:'Toiming',b:'Riigi tegu, mis ei ole paberil otsus — nt politsei viib inimese kainenema. Rakendamise tulem ei pea alati olema akt.'},
+oigussuhe:{k:'t',t:'Õigussuhe',b:'Isikute vaheline seos, mis tekib õigusnormi alusel ning mis on suunatud õiguste, kohustuste ja vastutuse tekkimisele, muutmisele või lõpetamisele.'},
+subjoigus:{k:'t',t:'Subjektiivne õigus',b:'Sinu isiklik õigus midagi teha või nõuda. Juhiluba annab sulle subjektiivse õiguse autot juhtida.'},
+jurkohustus:{k:'t',t:'Juriidiline kohustus',b:'Sinu isiklik kohustus midagi teha või tegemata jätta. Liikluses arvestada teiste liiklejatega on juriidiline kohustus.'},
+kasutamine:{k:'t',t:'Õiguse kasutamine',b:'Vahetu realiseerimine aktiivselt: sa kasutad õigust, mis sul on. Juhid autot, mille loa sa said. Keegi teine sinu eest midagi tegema ei pea.'},
+jargimine:{k:'t',t:'Õiguse järgimine',b:'Vahetu realiseerimine kohustuse või keelu kaudu. Sageli tähendab see lihtsalt mitte midagi tegemist — keelust hoidumine on ka realiseerimine.'},
+rakendamine:{k:'t',t:'Õiguse rakendamine',b:'Riik teeb sinu kohta otsuse õigusnormi alusel. Ainult pädev riigiorgan või ametiisik saab seda teha. Vahendatud realiseerimine: sinu õigus ei saa realiseeruda ilma võimuorgani abita.'},
+avalik:{k:'t',t:'Avalik õigus',b:'Riigi ja inimese suhe, kus riik on ülemuse rollis. Riik tohib teha ainult seda, milleks seadus talle loa annab. Normid on siin imperatiivsed.'},
+era:{k:'t',t:'Eraõigus',b:'Kahe võrdse poole suhe — ost, müük, leping, üür. Lubatud on kõik, mis pole keelatud. Siit tuleb ka dispositiivsus.'},
+lunk:{k:'t',t:'Lünk',b:'Normi ei ole olemas. Olukord on elus olemas, aga seadus vaikib. Ületatakse tõlgendamise teel — analoogia, rõhutamine, vastandamine.'},
+vastuolu:{k:'t',t:'Vastuolu',b:'Norme on kaks või rohkem ja nad näevad ette erinevad, teineteist välistavad tagajärjed. Ületatakse kollisioonireeglitega, mitte tõlgendamisega.'},
+analoogia:{k:'t',t:'Analoogia',b:'Lünga täitmine sarnase normi abil: kui täpset reeglit pole, kasutatakse kõige lähema olukorra reeglit.'},
+grammatiline:{k:'t',t:'Grammatiline tõlgendamine',b:'Loed lihtsalt, mida sõnad tähendavad. Alati esimene samm. Õiguskeel on üldkeele erijuht — täpsem, ja selle täpsuse tagavad terminid.'},
+systemaatiline:{k:'t',t:'Süstemaatiline tõlgendamine',b:'Vaatad, kus norm seaduses asub ja mis on tema ümber. Sõna tähendus sõltub naabritest: õigusnormid ei ole korrastamata hunnik, vaid korrastatud tervik.'},
+ajalooline:{k:'t',t:'Ajalooline tõlgendamine',b:'Uurid, mida seadusandja mõtles siis, kui ta selle kirjutas — seletuskirjad, stenogrammid, protokollid, toonane meedia.'},
+teleoloogiline:{k:'t',t:'Teleoloogiline tõlgendamine',b:'Küsid, mis on normi eesmärk. Miks see reegel üldse olemas on? Vastus tuleb sätte tähendusest ühiskonnas täna ning haldus- ja kohtupraktikast.'},
+maaratlemata:{k:'t',t:'Määratlemata õigusmõiste',b:'Seaduses olev venitatav sõna: „mõistlik aeg“, „avalik huvi“, „oluline oht“, „avalik koht“. Täpset piiri ei ole, sisu tuleb anda — ja kindlas järjekorras.'},
+sullogism:{k:'t',t:'Süllogism',b:'Loogikavõte kolmes osas: suur eeldus (norm), väike eeldus (faktid), järeldus. Kõik inimesed on surelikud; Sokrates on inimene; järelikult on Sokrates surelik. Subsumeerimine ongi süllogism.'},
+sund:{k:'t',t:'Riiklik sunnijõud',b:'Riigi võimalus sind millekski sundida — trahv, kohtutäitur, politsei. See eristab õigusnormi viisakusreeglist: mõlemat järgitakse, aga ainult ühe rikkumisel tuleb riik järele.'},
+honte:{k:'t',t:'HÕNTE',b:'Hea õigusloome ja normitehnika eeskiri — valitsuse määrus, mis ütleb, kuidas seaduse- ja määruse eelnõu peab olema üles ehitatud: millised normid kavandatakse, kuidas mõisteid määratletakse, kus asuvad rakendussätted.'},
+superior:{k:'t',t:'Lex superior derogat legi inferiori',b:'„Kõrgem seadus tõrjub madalama.“ Määrus ei saa seadust muuta, seadus ei saa põhiseadust muuta.'},
+specialis:{k:'t',t:'Lex specialis derogat legi generali',b:'„Erinorm tõrjub üldnormi.“ Kui on olemas täpsem reegel just sinu olukorra jaoks, kasutatakse seda, mitte üldist.'},
+posterior:{k:'t',t:'Lex posterior derogat legi priori',b:'„Hilisem tõrjub varasema.“ Uuem norm võidab vanema — aga ainult sama astme sees. Uus määrus ei võida vana seadust.'},
+analyys:{k:'t',t:'Analüüsiv stiil',b:'Lahend, kus kogu mõttekäik on samm-sammult välja kirjutatud ja kontrollitav. Kasutatakse keerukamate juhtumite ja kohtulahendite puhul.'},
+otsustus:{k:'t',t:'Otsustusstiil',b:'Lahend, kus otsus öeldakse kohe välja ja põhjendused pigem konstateeritakse. Kasutatakse haldusaktides ning lühi- ja kiirmenetluses. Lühem, aga peab jääma kontrollitavaks.'},
+
+/* ─── paragrahvid ─── */
+ps3:{k:'p',t:'PS § 3',src:'ffail',b:'<strong>(1)</strong> Riigivõimu teostatakse üksnes põhiseaduse ja sellega kooskõlas olevate seaduste alusel. Rahvusvahelise õiguse üldtunnustatud põhimõtted ja normid on Eesti õigussüsteemi lahutamatu osa.<br><br><strong>(2)</strong> Seadused avaldatakse ettenähtud korras. Täitmiseks kohustuslikud saavad olla üksnes avaldatud seadused.',n:'Konspekt esitab kogu teksti ühe plokina, lõikenumbreid eristamata; lõikejaotus on siin lisatud loetavuse pärast.'},
+ps87:{k:'p',t:'PS § 87 p 6',src:'kontrollimata',b:'Vabariigi Valitsus: … <strong>6)</strong> annab seaduse alusel ja täitmiseks määrusi ja korraldusi;',n:'Seda sätet ei ole kursuse materjalides. Sõnastus on siia võetud mujalt ja Riigi Teatajast kontrollimata — kontrolli enne kasutamist.'},
+vos5:{k:'p',t:'VÕS § 5',src:'kontrollimata',b:'Kursuse materjalides on ainult paragrahvi number ja pealkiri: <strong>„Seaduse dispositiivsuse põhimõte (e lepinguvabaduse põhimõte)“</strong>. Sätte teksti ei ole.',n:'Loengumaterjalis on ainult märkus „NB! Vt VÕS § 5“. Teksti siia ei kirjutata, sest allikates seda ei ole.'},
+kvts43:{k:'p',t:'KVTS § 43 lg 1 p 1',src:'ffail',b:'Kaitseressursside Amet <mark class="t">annab kutsealusele ajapikendust</mark>, <mark class="h">kui kutsealune:<br>1) lapsevanemana või muu last ülalpidava isikuna peab ülal vähemalt ühte alla kolmeaastast last ning ülalpidamiskohustus tuleneb perekonnaseadusest;</mark>',n:'Lõikes 1 on neli punkti; siin on punkt 1. Punktide vahel on valik, punkti 1 sees kumulatsioon. Tunnuste sisustamiseks vaja KVTS § 2 lg 3 ja PKS § 16.'},
+kvts2:{k:'p',t:'KVTS § 2 lg 3',src:'ffail',b:'<strong>Kutsealune</strong> on 17–27-aastane (kaasa arvatud) meessoost isik kuni aja- või asendusteenistusse asumiseni või aja- või asendusteenistusse asumisest vabastamiseni.',n:'Legaaldefinitsioon, mis sisustab KVTS § 43 lg 1 esimese tunnuse.'},
+pks16:{k:'p',t:'PKS § 16',src:'ffail',b:'<strong>Perekonna ülalpidamise kohustus.</strong> (1) Abikaasad on vastastikku kohustatud oma tööga ja varaga perekonda ülal pidama.',n:'PKS reguleerib ka muul viisil lapse ülalpidamiskohustust — siis võib vaja minna ajaloolist ja teleoloogilist tõlgendamist.'},
+kors30:{k:'p',t:'KorS § 30 lg 1',src:'ffail',b:'Politsei või seaduses sätestatud juhul muu korrakaitseorgan <mark class="t">võib isiku peatada ja teda küsitleda</mark>, <mark class="h">kui on alust arvata, et isikul on ohu ennetamiseks, väljaselgitamiseks või tõrjumiseks või korrarikkumise kõrvaldamiseks või kaitstava isiku või valvatava objekti ohutuse tagamiseks vajalikke andmeid, ning selle ohu ennetamine, väljaselgitamine, tõrjumine või korrarikkumise kõrvaldamine või isiku kaitsmine või objekti valvamine on küsitleva korrakaitseorgani pädevuses.</mark>',n:'Slaidi valem: kui E1 v E2 v E3 v E4 ning E5 v E6 v …, siis võib ÕT1 ja ÕT2. Faktiline koosseis on kumulatiivne ja alternatiivne korraga, tagajärg kumulatiivne. „Võib“ = otsustusdiskretsioon.'},
+kors28:{k:'p',t:'KorS § 28 lg 1',src:'ffail',b:'<mark class="h">Ohu või korrarikkumise korral</mark> on pädeval korrakaitseorganil <mark class="t">õigus panna avaliku korra eest vastutavale isikule ettekirjutusega ohu tõrjumise või korrarikkumise kõrvaldamise kohustus ning hoiatada teda käesoleva paragrahvi lõikes 2 või 3 nimetatud haldussunnivahendite kohaldamise eest</mark>, <mark class="h">kui isik ei täida kohustust hoiatuses määratud tähtaja jooksul.</mark>',n:'Ainus säte, mille juurde slaidid kirjutavad liigi otse: silt „Järgimist tagav: sekkumisnorm“. Mujal esitatakse sama säte lühemas väljavõttes.'},
+kors5:{k:'p',t:'KorS § 5',src:'ffail',b:'<strong>(1) Korrarikkumine</strong> on avaliku korra kaitsealas oleva õigusnormi või isiku subjektiivse õiguse rikkumine või õigushüve kahjustamine.<br><br><strong>(2) Oht</strong> on olukord, kus ilmnenud asjaoludele antava objektiivse hinnangu põhjal võib pidada piisavalt tõenäoliseks, et lähitulevikus leiab aset korrarikkumine.<br><br><strong>(3) Oluline oht</strong> on oht isiku tervisele, olulise väärtusega varalisele hüvele, keskkonnale või käesoleva paragrahvi lõikes 4 nimetamata kuriteo toimepanemise oht.',n:'Üks paragrahv, mitu legaaldefinitsiooni korraga — tüüpiline mõistenormide kogum.'},
+kors46:{k:'p',t:'KorS § 46',src:'kontrollimata',b:'Sätte teksti ei ole kursuse materjalides. Teada on ainult see, mida VangS § 71 lg 3¹ tema kohta ütleb: isiku kinnipidamine toimub korrakaitseseaduse §-s 46 sätestatud korras.',n:'Viitava normi sihtkoht. Teksti siia ei kirjutata.'},
+msys25:{k:'p',t:'MSÜS § 25 lg 1',src:'ffail',b:'Majandushaldusasutus <mark class="t">keeldub tegevusloa andmisest</mark> <mark class="h">järgmistel juhtudel:<br>1) ettevõtja suhtes kehtib asjaomasel tegevusalal kohtuotsusega kohaldatud või seadusest tulenev majandustegevuse keeld;<br>2) ettevõtja või tema majandustegevus ei vasta ühele või enamale tegevusloa kontrolliesemesse kuuluvale majandustegevuse nõudele;<br>3) käesoleva seaduse alusel ettevõtja hoolsuskohustuse täitmise kava esitamiseks kohustatud ettevõtja ei ole sellist kava esitanud või ei ole tema esitatud kava majandushaldusasutuse hinnangul piisav selleks, et rikkumisi vältida;<br>4) ettevõtja on tegevusloa taotluses esitanud tahtlikult valeandmeid, mis võiksid mõjutada taotluse lahendamist ning mille esitamata jätmise korral tuleks tegevusloa andmisest keelduda muudel käesolevas paragrahvis nimetatud alustel.</mark>',n:'Slaidi valem: kui E1 v E2 v E3 v E4, siis keeldutakse. Faktiline koosseis alternatiivne, õiguslik tagajärg lihtne. Punkt 4 oli lehel varem poolik — nüüd täismahus.'},
+vangs63_1:{k:'p',t:'VangS § 63 lg 1',src:'ffail',b:'<mark class="h">Käesoleva seaduse, vangla sisekorraeeskirjade või muude õigusaktide nõuete süülise rikkumise eest</mark> <mark class="t">võib kinnipeetavale kohaldada distsiplinaarkaristusi. Need on:<br>1) noomitus<br>…<br>4) kartserisse paigutamine kuni 45 ööpäevaks.</mark>',n:'Täielik norm. Slaid võtab koosseisu lahti nii: (E1) on rikutud nõudeid — VangS või VSKE või vm õigusakt; (E2) süüliselt. E1 ja E2 on kumulatiivsed, E1 sees on alternatiiv. Tagajärg on valikuline.'},
+vangs63_2:{k:'p',t:'VangS § 63 lg 2',src:'ffail',b:'Noort kinnipeetavat võib kartserisse paigutada <strong>kuni 20 ööpäevaks</strong>.',n:'Kitsendav norm lõike 1 suhtes. Mõiste „noor kinnipeetav“ avab § 77.'},
+vangs67:{k:'p',t:'VangS § 67 lg 1',src:'ffail',b:'<mark class="h">Julgeoleku tagamiseks vanglas on kinnipeetav</mark> <mark class="t">kohustatud:<br>1) täitma vangla sisekorraeeskirju ja alluma vanglateenistuse ametnike seaduslikele korraldustele;</mark>',n:'Slaidi lahtivõte: kui (kinnipeetav · vanglas · vangla julgeoleku tagamiseks), siis kohustatud täitma sisekorraeeskirju JA alluma korraldustele. Selle normi rikkumine käivitab VangS § 63 lg 1.'},
+vangs71:{k:'p',t:'VangS § 71 lg 3¹',src:'ffail',b:'Vanglateenistuse ametnikul on teenistuskohustuste täitmisel …, õigus kinni pidada isik, kes oma tegevusega vahetult ohustab karistuse täideviimist vanglas. <strong>Isiku kinnipidamine toimub korrakaitseseaduse §-s 46 sätestatud korras.</strong>',n:'Viitav norm: ei korda kinnipidamise korda, vaid saadab KorS § 46 juurde.'},
+vangs77:{k:'p',t:'VangS § 77',src:'ffail',b:'<strong>Noor kinnipeetav</strong> käesoleva seaduse tähenduses on isik, kes karistuse täitmisele pööramise ajal on noorem kui 21-aastane.',n:'Seletav norm ehk legaaldefinitsioon. Väljend „käesoleva seaduse tähenduses“ tähendab, et tähendus kehtib ainult vangistusseaduses.'},
+vangs25:{k:'p',t:'VangS § 25 lg 1 teine lause',src:'ffail',b:'<mark class="t">Pikaajalisi kokkusaamisi faktilise abikaasaga lubatakse</mark> <mark class="h">tingimusel, et neil on ühised lapsed või ühine majapidamine või vähemalt kaks aastat väldanud kooselu enne karistuse kandmise algust.</mark>',n:'Valikuline koosseis: piisab ühest kolmest tingimusest. Kursuse tõendamistabeli alus.'},
+kors50:{k:'p',t:'KorS § 50 lg 1 p 3',src:'ffail',b:'Politsei või seaduses sätestatud juhul muu korrakaitseorgan <mark class="t">võib siseneda valdaja nõusolekuta tema valduses olevale piiratud või tähistatud kinnisasjale, ehitisse, eluruumi või ruumi, sealhulgas avada uksi, väravaid ja kõrvaldada muid takistusi</mark>, <mark class="h">kui: see on vajalik seadusega või seaduse alusel kehtestatud nõuete täitmise tagamisel ohu ennetamiseks, väljaselgitamiseks või tõrjumiseks või korrarikkumise kõrvaldamiseks, ning selliste nõuete täitmise tagamine on valdusesse siseneva korrakaitseorgani pädevuses.</mark>'},
+sads4:{k:'p',t:'SadS § 4 lg 5',src:'ffail',b:'<mark class="h">Sadama pidaja</mark> <mark class="t">peab tagama, et ehitustegevus akvatooriumil ja sissesõiduteel toimuks vastavalt meresõiduohutuse seaduse alusel kehtestatud korrale.</mark>'},
+ls91:{k:'p',t:'LS § 91 lg 2 p 3',src:'ffail',b:'Juht <mark class="t">kõrvaldatakse sõiduki juhtimiselt</mark>, <mark class="h">kui tal puudub vastava kategooria mootorsõiduki juhtimisõigus</mark>'},
+kvts86:{k:'p',t:'KVTS § 86 p 5',src:'ffail',b:'Tegevteenistusse ei võeta isikut: … <strong>5)</strong> kes on erakonna liige;',n:'Kursuse lünga/vastuolu näite alus (Ivar Säde).'},
+ls7:{k:'p',t:'LS § 7² lg 1',src:'ffail',b:'<mark class="t">Keelatud on</mark> <mark class="h">teed kahjustada ja risustada</mark>.',n:'Kursuse näide käitumisnormist. Slaid kirjutab lahti: kui kahjustatakse ja risustatakse teed, siis on see keelatud.'},
+ls94:{k:'p',t:'LS § 94 lg 1',src:'ffail',b:'Mootorsõidukit võib juhtida isik, kellel on vastava kategooria mootorsõiduki juhtimisõigus ning kelle juhtimisõigust ei ole peatatud, ära võetud või kehtetuks tunnistatud või keda ei ole juhtimiselt kõrvaldatud.'},
+ls100:{k:'p',t:'LS § 100',src:'ffail',b:'<strong>lg 1:</strong> Mootorsõiduki juhtimisõigus antakse isikule, kelle alaline elukoht on Eestis või kes suudab tõendada, et ta on Eestis õppinud vähemalt kuus kuud, kelle vanus ja terviseseisund vastavad kehtivatele nõuetele ja kes on omandanud mootorsõidukijuhi kvalifikatsiooni.<br><br><strong>lg 4:</strong> Liiklusteooria- ja sõidueksamite läbiviimist korraldab ja kinnitab eksamitulemused ning annab mootorsõiduki juhtimisõiguse Transpordiamet.'},
+ls16:{k:'p',t:'LS § 16 lg 1',src:'ffail',b:'Liikleja peab olema viisakas ja arvestama teiste liiklejatega ning oma käitumises hoiduma kõigest, mis võib takistada liiklust, ohustada või kahjustada inimesi, vara või keskkonda.'},
+ls201:{k:'p',t:'LS § 201 lg 1',src:'ffail',b:'Mootorsõiduki, maastikusõiduki või trammi juhtimise eest vastava kategooria mootorsõiduki või trammi juhtimisõiguseta isiku poolt – karistatakse rahatrahviga kuni 200 trahviühikut või arestiga.'},
+sads42:{k:'p',t:'SadS § 42 lg 3',src:'ffail',b:'Riiklikku järelevalvet teiste käesolevas seaduses ja selle alusel kehtestatud õigusaktides sätestatud nõuete täitmise üle teostab Transpordiamet.',n:'Pädevusnorm — ütleb, kes järelevalvet teeb.'},
+sads43:{k:'p',t:'SadS § 43',src:'ffail',b:'Korrakaitseorgan võib käesolevas seaduses sätestatud riikliku järelevalve teostamiseks kohaldada korrakaitseseaduse §-des 30, 31, 32, 49, 50 ja 51 sätestatud riikliku järelevalve erimeetmeid korrakaitseseaduses sätestatud alusel ja korras.'},
+sads48:{k:'p',t:'SadS § 48 lg 1',src:'ffail',b:'<strong style="color:var(--dep)">Allikas on kaks erinevat teksti sama sätte all.</strong><br><br><strong>Versioon A</strong> (karistusnormide loetelus):<br>„Sadama ja sadamarajatise turvanõuete rikkumise eest – karistatakse rahatrahviga kuni 300 trahviühikut.“<br><br><strong>Versioon B</strong> (täieliku õigusnormi näidete seas):<br>„Ehitustegevust veeteel või navigatsioonimärgi vahetus läheduses või mõjupiirkonnas piiratakse, kui ehitustegevus kahjustab meresõiduohutust või sisevetel sõidu ohutust.“',n:'Tekstid ei kattu üheski osas: A on karistusnorm, B on piirangunorm. Kumbagi ei ole valitud. Riigi Teatajast lahendada ei õnnestunud.'},
+hms40:{k:'p',t:'HMS § 40 lg 1',src:'ffail',b:'Enne haldusakti andmist peab haldusorgan andma menetlusosalisele võimaluse esitada kirjalikus, suulises või muus sobivas vormis asja kohta oma arvamus ja vastuväited.',n:'Menetlusnorm — ärakuulamisõigus.'},
+hms6:{k:'p',t:'HMS § 6',src:'ffail',b:'<strong>Uurimispõhimõte.</strong> Haldusorgan on kohustatud välja selgitama menetletavas asjas olulise tähendusega asjaolud ja vajaduse korral koguma selleks tõendeid oma algatusel.',n:'Isik ei pea kõike ise ette kandma — asutus peab ise uurima.'},
+hms38:{k:'p',t:'HMS § 38 lg 2',src:'ffail',b:'Tõendiks võib olla menetlusosalise seletus, dokumentaalne tõend, asitõend, paikvaatlus, tunnistaja ütlus ning eksperdi arvamus.'},
+avts1:{k:'p',t:'AvTS § 1',src:'ffail',b:'Käesoleva seaduse eesmärk on tagada üldiseks kasutamiseks mõeldud teabele avalikkuse ja igaühe juurdepääsu võimalus, lähtudes demokraatliku ja sotsiaalse õigusriigi ning avatud ühiskonna põhimõtetest, ning luua võimalused avalikkuse kontrolliks avalike ülesannete täitmise üle.',n:'Näide sellest, kui seaduse eesmärk on tekstis otse kirjas — teleoloogilise tõlgendamise parim lähtekoht.'},
+ats51:{k:'p',t:'ATS § 51 lg 4',src:'ffail',b:'Ametnik peab käituma väärikalt nii teenistuses olles kui ka väljaspool teenistust, sealhulgas hoiduma tegevusest, mis diskrediteeriks teda ametnikuna või kahjustaks ametiasutuse mainet.',n:'Sisaldab määratlemata õigusmõistet „diskrediteeriks“.'},
+rk3313:{k:'p',t:'Riigikohus 3-3-1-70-03 p 15',src:'ffail',b:'„Diskrediteerimisega eeltoodud sätte tähenduses on tegemist üksnes siis, kui selline tegu on oluliselt mõjutanud avalikkuse poolt asutusele või ametnikule antavat hinnangut. Olulisuse kriteeriumi sisustamisel tuleb lähtuda sellest, kuivõrd taunitav oli tegu lähtudes üldisest õiglustundest ja ühiskonna õigusteadvusest ning kuivõrd see kahjustas asutuse mainet ja usaldusväärsust.“',n:'Kohtupraktika on teine samm määratlemata mõiste sisustamisel.'}
+};
+
+/* ── popover engine ── */
+const pop = document.getElementById('pop');
+let openEl = null;
+
+function render(key){
+  const d = POP[key];
+  if(!d) return false;
+  const head = d.k === 'p'
+    ? `<div class="ph"><span class="pc">${d.t}</span><span class="ps s-${d.src}">${SRC[d.src]}${d.loc ? ' · ' + d.loc : ''}</span></div>`
+    : `<div class="ph"><span class="pt">${d.t}</span></div>`;
+  const body = `<div class="pb${d.k==='p'?' quote':''}">${d.b}</div>`;
+  const extra = d.src === 'kontrollimata' ? RTNOTE : '';
+  const nt = [d.n, extra].filter(Boolean).join(' ');
+  const note = nt ? `<div class="pn">${nt}</div>` : '';
+  pop.innerHTML = head + body + note;
+  return true;
+}
+
+function place(el){
+  const r = el.getBoundingClientRect();
+  pop.style.left = '0px'; pop.style.top = '0px';
+  const p = pop.getBoundingClientRect();
+  const vw = document.documentElement.clientWidth, vh = document.documentElement.clientHeight;
+  let left = r.left + r.width/2 - p.width/2;
+  left = Math.max(12, Math.min(left, vw - p.width - 12));
+  let top = r.bottom + 9;
+  if(top + p.height > vh - 12) top = Math.max(12, r.top - p.height - 9);
+  pop.style.left = left + 'px';
+  pop.style.top = top + 'px';
+}
+
+function openPop(el){
+  const key = el.getAttribute('data-pop');
+  if(!render(key)) return;
+  if(openEl) openEl.classList.remove('open');
+  openEl = el; el.classList.add('open');
+  pop.hidden = false;
+  place(el);
+}
+
+function closePop(){
+  if(!openEl) return;
+  openEl.classList.remove('open');
+  openEl = null;
+  pop.hidden = true;
+}
+
+document.addEventListener('click', e => {
+  const trg = e.target.closest ? e.target.closest('[data-pop]') : null;
+  if(trg){
+    e.preventDefault();
+    if(trg === openEl) closePop(); else openPop(trg);
+    return;
+  }
+  if(!pop.contains(e.target)) closePop();
+});
+
+document.addEventListener('keydown', e => {
+  if(e.key === 'Escape') closePop();
+  const t = e.target;
+  if((e.key === 'Enter' || e.key === ' ') && t.hasAttribute && t.hasAttribute('data-pop')){
+    e.preventDefault();
+    if(t === openEl) closePop(); else openPop(t);
+  }
+});
+
+let raf;
+function reflow(){
+  if(!openEl) return;
+  cancelAnimationFrame(raf);
+  raf = requestAnimationFrame(() => {
+    const r = openEl.getBoundingClientRect();
+    if(r.bottom < 0 || r.top > document.documentElement.clientHeight) closePop();
+    else place(openEl);
+  });
+}
+addEventListener('scroll', reflow, true);
+addEventListener('resize', reflow);
+
+function enhance(root){
+  root.querySelectorAll('[data-pop]').forEach(el => {
+    if(el.dataset.ready) return;
+    el.dataset.ready = '1';
+    el.setAttribute('role','button');
+    el.setAttribute('tabindex','0');
+    if(POP[el.getAttribute('data-pop')] && POP[el.getAttribute('data-pop')].k === 'p'
+       && el.tagName.toLowerCase() !== 'text' && !el.classList.contains('chip')){
+      el.classList.add('is-para');
+    }
+  });
+}
+
+/* ── axis matrix ── */
+const AXES = [
+  {k:'ettekirjutus', label:'Ettekirjutuse iseloom', sub:'mida norm tahab', opts:[['kohustav',null],['keelav',null],['õigustav',null]]},
+  {k:'funktsioon',   label:'Funktsioon',           sub:'roll süsteemis', opts:[['käitumisnorm','kaitumisnorm'],['karistusnorm',null],['sekkumist õigustav','sekkumisnorm'],['nõude alus','noudealus'],['pädevusnorm','padevusnorm'],['korraldusnorm','menetlusnorm'],['legaaldefinitsioon','legaaldef']]},
+  {k:'tasand',       label:'Primaar / sekundaar',  sub:'H–D või Dmitte–S', opts:[['primaarnorm','primaar'],['sekundaarnorm','sekundaar']]},
+  {k:'siduvus',      label:'Siduvuse aste',        sub:'kas saab kõrvale kalduda', opts:[['imperatiivne','imperatiivne'],['dispositiivne','dispositiivne']]},
+  {k:'diskretsioon', label:'Kaalutlusõigus',       sub:'peab / võib / valik', opts:[['puudub',null],['otsustusdiskretsioon','otsustusd'],['valikudiskretsioon','valikud']]},
+  {k:'haru',         label:'Õigusharu',            sub:'poolte vahekord', opts:[['avalik õigus','avalik'],['eraõigus','era']]},
+  {k:'laad',         label:'Sisu laad',            sub:'õigus või selle maksmapanek', opts:[['materiaalnorm',null],['menetlusnorm','menetlusnorm']]},
+  {k:'yldisus',      label:'Üldisuse aste',        sub:'lex generalis / specialis', opts:[['üldnorm',null],['erinorm','specialis']]},
+  {k:'koosseis',     label:'Faktiline koosseis',   sub:'tunnuste ülesehitus', opts:[['lihtne',null],['keeruline (kumulatiivne)','kumulatiivne'],['valikuline (alternatiivne)','valikuline']]},
+  {k:'tagajarg',     label:'Õiguslik tagajärg',    sub:'järelmite ülesehitus', opts:[['lihtne',null],['keeruline (kumulatiivne)','kumulatiivne'],['valikuline (alternatiivne)','valikuline']]},
+  {k:'taielikkus',   label:'Täielikkus',           sub:'kas kohaldub üksi', opts:[['täielik','taielik'],['spetsialiseeritud','spetsnorm']]}
+];
+
+const NORMS = {
+  kvts:{cite:'kvts43',
+    v:{ettekirjutus:'kohustav',funktsioon:'käitumisnorm',tasand:'primaarnorm',siduvus:'imperatiivne',diskretsioon:'puudub',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'valikuline (alternatiivne)',tagajarg:'lihtne',taielikkus:'täielik'},
+    note:'<span class="tt" data-pop="noudealus">Nõude alus</span> — sisaldab isiku subjektiivset õigust. Koosseis on kahekihiline: punktide 1–4 vahel valikuline, aga punkti 1 sees kumulatiivne. Tunnuste sisustamiseks vaja <span class="tt" data-pop="kvts2">KVTS § 2 lg 3</span> ja <span class="tt" data-pop="pks16">PKS § 16</span>.'},
+  kors30:{cite:'kors30',
+    v:{ettekirjutus:'õigustav',funktsioon:'sekkumist õigustav',tasand:'primaarnorm',siduvus:'imperatiivne',diskretsioon:'otsustusdiskretsioon',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'keeruline (kumulatiivne)',tagajarg:'keeruline (kumulatiivne)',taielikkus:'täielik'},
+    note:'<span class="tt" data-pop="sekkumisnorm">Sekkumisnorm</span> ehk õiguslik alus. Koosseis on kumulatiivne ja alternatiivne korraga: E1 ning E2 või E3 või … Sõna „võib“ tähendab <span class="tt" data-pop="otsustusd">otsustusdiskretsiooni</span>.'},
+  msys:{cite:'msys25',
+    v:{ettekirjutus:'kohustav',funktsioon:'sekkumist õigustav',tasand:'primaarnorm',siduvus:'imperatiivne',diskretsioon:'puudub',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'valikuline (alternatiivne)',tagajarg:'lihtne',taielikkus:'täielik'},
+    note:'Puhas näide <span class="tt" data-pop="valikuline">valikulisest koosseisust</span> ja lihtsast tagajärjest: kui E1 või E2 või E3 või E4, siis keeldutakse. Sõna „keeldub“ ei jäta kaalutlusruumi.'},
+  vangs67:{cite:'vangs67',
+    v:{ettekirjutus:'kohustav',funktsioon:'käitumisnorm',tasand:'primaarnorm',siduvus:'imperatiivne',diskretsioon:'puudub',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'keeruline (kumulatiivne)',tagajarg:'keeruline (kumulatiivne)',taielikkus:'täielik'},
+    note:'Klassikaline <span class="tt" data-pop="primaar">primaarnorm</span> valemiga H – D. Selle normi rikkumine käivitab <span class="tt" data-pop="vangs63_1">VangS § 63 lg 1</span> — sekundaarnormi.'},
+  vangs63:{cite:'vangs63_1',
+    v:{ettekirjutus:'õigustav',funktsioon:'karistusnorm',tasand:'sekundaarnorm',siduvus:'imperatiivne',diskretsioon:'valikudiskretsioon',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'keeruline (kumulatiivne)',tagajarg:'valikuline (alternatiivne)',taielikkus:'täielik'},
+    note:'<span class="tt" data-pop="sekundaar">Sekundaarnorm</span> valemiga D<sub>mitte</sub> – S. Lõige 2 (<span class="tt" data-pop="vangs63_2">VangS § 63 lg 2</span>) on selle suhtes erinorm ja <span class="tt" data-pop="vangs77">§ 77</span> sisustab tunnuse „noor kinnipeetav“.'},
+  ls7:{cite:'ls7',
+    v:{ettekirjutus:'keelav',funktsioon:'käitumisnorm',tasand:'primaarnorm',siduvus:'imperatiivne',diskretsioon:'puudub',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'valikuline (alternatiivne)',tagajarg:'lihtne',taielikkus:'täielik'},
+    note:'Lühim võimalik täielik norm. Keeld realiseerub isiku passiivse käitumise kaudu — see on <span class="tt" data-pop="jargimine">õiguse järgimine</span>, mitte kasutamine.'},
+  ls94:{cite:'ls94',
+    v:{ettekirjutus:'õigustav',funktsioon:'käitumisnorm',tasand:'primaarnorm',siduvus:'imperatiivne',diskretsioon:'puudub',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'keeruline (kumulatiivne)',tagajarg:'lihtne',taielikkus:'täielik'},
+    note:'<strong>Tähelepanu sõnale „võib“.</strong> Siin ei tähenda see kaalutlusõigust, vaid <span class="tt" data-pop="absoluutne">lubavat dispositsiooni</span> — norm on suunatud eraisikule, mitte ametnikule. Diskretsioon saab olla ainult rakendajal. Koosseis on kumulatiivne: juhtimisõigus JA seda ei ole peatatud JA ära võetud JA kehtetuks tunnistatud JA isik ei ole kõrvaldatud.'},
+  pks16:{cite:'pks16',
+    v:{ettekirjutus:'kohustav',funktsioon:'käitumisnorm',tasand:'primaarnorm',siduvus:'imperatiivne',diskretsioon:'puudub',haru:'eraõigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'lihtne',tagajarg:'keeruline (kumulatiivne)',taielikkus:'täielik'},
+    note:'<strong>Ainus <span class="tt" data-pop="era">eraõiguse</span> näide kursuse materjalides.</strong> Kõik ülejäänud on avalikust õigusest — sellepärast see telg teiste normide puhul ei liigu. Tagajärg on kumulatiivne: ülal pidama tööga JA varaga. Kursusel kasutatakse seda KVTS § 43 tunnuse „ülalpidamiskohustus“ sisustamiseks.'},
+  kors28:{cite:'kors28',
+    v:{ettekirjutus:'õigustav',funktsioon:'sekkumist õigustav',tasand:'primaarnorm',siduvus:'imperatiivne',diskretsioon:'otsustusdiskretsioon',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'valikuline (alternatiivne)',tagajarg:'keeruline (kumulatiivne)',taielikkus:'täielik'},
+    note:'Ainus säte, mille juurde slaidid normiliigi otse kirjutavad („Järgimist tagav: sekkumisnorm“). Koosseis on kihiline: „oht <em>või</em> korrarikkumine“ on alternatiiv, aga lisandub tingimus, et isik ei täida kohustust tähtajaks. Tagajärg on kumulatiivne — panna kohustus JA hoiatada.'},
+  ls201:{cite:'ls201',
+    v:{ettekirjutus:'keelav',funktsioon:'karistusnorm',tasand:'sekundaarnorm',siduvus:'imperatiivne',diskretsioon:'valikudiskretsioon',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'keeruline (kumulatiivne)',tagajarg:'valikuline (alternatiivne)',taielikkus:'täielik'},
+    note:'Liiklusseaduse <span class="tt" data-pop="sekundaar">sekundaarnorm</span>, mis käivitub siis, kui <span class="tt" data-pop="ls94">§ 94 lg 1</span> dispositsioon ei saabunud. Tagajärg on valikuline — rahatrahv <em>või</em> arest — seega valikudiskretsioon. Kõrvuta <span class="tt" data-pop="vangs63_1">VangS § 63 lg 1</span>-ga: sama struktuur, teine valdkond.'},
+  sads42:{cite:'sads42',
+    v:{ettekirjutus:'kohustav',funktsioon:'pädevusnorm',tasand:null,siduvus:'imperatiivne',diskretsioon:'puudub',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'lihtne',tagajarg:'lihtne',taielikkus:'täielik'},
+    note:'<span class="tt" data-pop="padevusnorm">Pädevusnorm</span> ei käsi kedagi käituda, vaid jagab tööd asutuste vahel. Sellepärast jääb telg „primaar / sekundaar“ tühjaks — see jaotus käib käitumisnormide kohta. Kui asutus tegutseb väljaspool pädevust, on tegu õigusvastane, isegi kui sisuliselt õige.'},
+  hms40:{cite:'hms40',
+    v:{ettekirjutus:'kohustav',funktsioon:'korraldusnorm',tasand:'primaarnorm',siduvus:'imperatiivne',diskretsioon:'puudub',haru:'avalik õigus',laad:'menetlusnorm',yldisus:'üldnorm',koosseis:'lihtne',tagajarg:'lihtne',taielikkus:'täielik'},
+    note:'<strong>Ainus <span class="tt" data-pop="menetlusnorm">menetlusnormi</span> näide maatriksis.</strong> Ärakuulamisõigus: enne haldusakti andmist PEAB haldusorgan andma võimaluse arvamus esitada. Vanglas tähendab see, et enne distsiplinaarkaristust tuleb kinnipeetav ära kuulata — vt kaasust K3.'},
+  vangs25:{cite:'vangs25',
+    v:{ettekirjutus:'õigustav',funktsioon:'nõude alus',tasand:'primaarnorm',siduvus:'imperatiivne',diskretsioon:'puudub',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'erinorm',koosseis:'valikuline (alternatiivne)',tagajarg:'lihtne',taielikkus:'täielik'},
+    note:'<span class="tt" data-pop="noudealus">Nõude alus</span> — kinnipeetav saab sellele ise tugineda. Puhas <span class="tt" data-pop="valikuline">valikuline koosseis</span>: kolm tingimust „või“-seoses, piisab ühest. Proovi klõpsatavat kontrollnimekirja Osas II ja lahenda kaasus K2.'},
+  vangs63b:{cite:'vangs63_2',
+    v:{ettekirjutus:'õigustav',funktsioon:null,tasand:null,siduvus:'imperatiivne',diskretsioon:'otsustusdiskretsioon',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'erinorm',koosseis:'lihtne',tagajarg:'lihtne',taielikkus:'spetsialiseeritud'},
+    note:'<span class="tt" data-pop="kitsendav">Kitsendav norm</span> lõike 1 suhtes: ei anna oma tagajärge, vaid muudab lõike 1 ülemmäära 45-lt 20-le. Funktsiooni ja tasandi telg jäävad tühjaks, sest kursuse funktsiooniloetelu ei kata kitsendavaid norme — need on <em>struktuuri</em>, mitte funktsiooni järgi liigitus. Tunnuse „noor kinnipeetav“ sisustab <span class="tt" data-pop="vangs77">§ 77</span>.'},
+  vangs71:{cite:'vangs71',
+    v:{ettekirjutus:'õigustav',funktsioon:'sekkumist õigustav',tasand:null,siduvus:'imperatiivne',diskretsioon:'otsustusdiskretsioon',haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'keeruline (kumulatiivne)',tagajarg:'lihtne',taielikkus:'spetsialiseeritud'},
+    note:'Slaid märgib selle <span class="tt" data-pop="viitav">viitavaks</span> normiks — mitte kogu säte, vaid selle <strong>teine lause</strong>, mis saadab kinnipidamise korra osas <span class="tt" data-pop="kors46">KorS § 46</span> juurde. Esimesel lausel on oma koosseis ja tagajärg olemas; viitav on ainult kord. Hea näide sellest, et üks lõige võib olla korraga kahte liiki.'},
+  kors5:{cite:'kors5',
+    v:{ettekirjutus:null,funktsioon:'legaaldefinitsioon',tasand:null,siduvus:'imperatiivne',diskretsioon:null,haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'valikuline (alternatiivne)',tagajarg:null,taielikkus:'spetsialiseeritud'},
+    note:'<strong>Legaaldefinitsioon, millel on ise valikuline koosseis.</strong> Korrarikkumine on õigusnormi rikkumine <em>või</em> subjektiivse õiguse rikkumine <em>või</em> õigushüve kahjustamine — piisab ühest. Kõrvuta <span class="tt" data-pop="vangs77">VangS § 77</span>-ga, mille definitsioonil on üks tunnus. Määratlemata mõiste sisustamisel on legaaldefinitsioon esimene reegel.'},
+  vangs77:{cite:'vangs77',
+    v:{ettekirjutus:null,funktsioon:'legaaldefinitsioon',tasand:null,siduvus:'imperatiivne',diskretsioon:null,haru:'avalik õigus',laad:'materiaalnorm',yldisus:'üldnorm',koosseis:'lihtne',tagajarg:null,taielikkus:'spetsialiseeritud'},
+    note:'<span class="tt" data-pop="legaaldef">Legaaldefinitsioon</span> ehk seletav norm — kaheosaline struktuur puudub. Ta ei käsi, ei keela ega õigusta, tal ei ole oma tagajärge ega kaalutlusruumi: neli telge jäävad tühjaks.'}
+};
+
+const matrix = document.getElementById('matrix');
+const gloss  = document.getElementById('gloss');
+const btns   = Array.from(document.querySelectorAll('.picker button'));
+
+matrix.innerHTML = AXES.map(a => `
+  <div class="row" data-ax="${a.k}">
+    <div class="ax">${a.label}<small>${a.sub}</small></div>
+    <div class="opts">${a.opts.map(([o,key]) =>
+      key ? `<span class="chip tt" data-opt="${o}" data-pop="${key}">${o}</span>`
+          : `<span class="chip" data-opt="${o}">${o}</span>`).join('')}</div>
+  </div>`).join('');
+
+function show(key){
+  const n = NORMS[key];
+  const c = POP[n.cite];
+  gloss.innerHTML = `<span class="g-cite"><span class="tt" data-pop="${n.cite}">${c.t}</span></span>${c.b}<br><br>${n.note}`;
+  AXES.forEach(a => {
+    const row = matrix.querySelector(`.row[data-ax="${a.k}"]`);
+    const val = n.v[a.k];
+    const opts = row.querySelector('.opts');
+    const old = opts.querySelector('.na');
+    if(old) old.remove();
+    a.opts.forEach(([o]) => {
+      const chip = opts.querySelector(`.chip[data-opt="${o}"]`);
+      chip.classList.toggle('on', o === val);
+      chip.classList.toggle('dep', o === val && a.k === 'taielikkus' && val === 'spetsialiseeritud');
+    });
+    if(val === null){
+      const tag = document.createElement('span');
+      tag.className = 'na';
+      tag.textContent = 'ei kohaldu';
+      opts.appendChild(tag);
+    }
+  });
+  btns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.n === key)));
+  enhance(gloss);
+}
+
+show('kvts');
+btns.forEach(b => b.addEventListener('click', () => { closePop(); show(b.dataset.n); }));
+
+/* ── tunnuste kontrollnimekiri: „ja“ vs „või“ ── */
+document.querySelectorAll('.chk').forEach(box => {
+  const mode = box.dataset.mode;
+  const items = Array.from(box.querySelectorAll('.ci'));
+  const res = box.querySelector('.cr');
+  const rt = res.querySelector('.rt');
+  const st = res.querySelector('.st');
+  function update(){
+    const on = items.filter(i => i.getAttribute('aria-pressed') === 'true').length;
+    const hit = mode === 'and' ? on === items.length : on > 0;
+    res.classList.toggle('yes', hit);
+    res.classList.toggle('no', !hit);
+    st.textContent = hit ? 'tagajärg saabub' : 'tagajärge ei kohaldata';
+    if (mode === 'and'){
+      rt.textContent = hit
+        ? 'Kõik ' + items.length + ' tunnust on täidetud.'
+        : (items.length - on) + ' tunnust ' + (items.length - on === 1 ? 'on' : 'on') + ' täitmata — kumulatiivse koosseisu puhul piisab ühest puudujäägist.';
+    } else {
+      rt.textContent = hit
+        ? 'Täidetud on ' + on + ' tunnus' + (on === 1 ? '' : 't') + '. Valikulise koosseisu puhul piisab ühest.'
+        : 'Ükski alternatiiv ei ole täidetud.';
+    }
+  }
+  items.forEach(i => i.addEventListener('click', () => {
+    i.setAttribute('aria-pressed', i.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+    update();
+  }));
+  update();
+});
+
+/* ── mini-kaasused ── */
+const EX = {
+  liigid:{h:'Määra normiliik',items:[
+    {q:'„Riiklikku järelevalvet teiste käesolevas seaduses ja selle alusel kehtestatud õigusaktides sätestatud nõuete täitmise üle teostab Transpordiamet.“',
+     o:['pädevusnorm','karistusnorm','legaaldefinitsioon'],ok:0,
+     w:'<b>Pädevusnorm.</b> Norm ei käsi kedagi käituda ega näe ette karistust — ta ütleb, <em>kes</em> tohib midagi teha. Pädevusnorme nimetatakse ka kompetentsinormideks.'},
+    {q:'„Noor kinnipeetav käesoleva seaduse tähenduses on isik, kes karistuse täitmisele pööramise ajal on noorem kui 21-aastane.“',
+     o:['legaaldefinitsioon','käitumisnorm','sekkumist õigustav norm'],ok:0,
+     w:'<b>Legaaldefinitsioon ehk mõistenorm.</b> Väljend „käesoleva seaduse tähenduses“ on kindel märk: mõiste sisu kehtib ainult selles seaduses. Iseseisvat tagajärge sel normil ei ole.'},
+    {q:'„Enne haldusakti andmist peab haldusorgan andma menetlusosalisele võimaluse esitada … oma arvamus ja vastuväited.“',
+     o:['korraldusnorm (menetlusnorm)','karistusnorm','volitusnorm'],ok:0,
+     w:'<b>Korraldusnorm.</b> Kursuse loetelus on liik „vormi-, tasu-, menetlusnormid e korraldusnormid“. Norm ei ütle, millised õigused kellelgi on, vaid kuidas menetlus peab käima.'},
+    {q:'„Sadama ja sadamarajatise turvanõuete rikkumise eest – karistatakse rahatrahviga kuni 300 trahviühikut.“',
+     o:['karistusnorm','nõude alus','pädevusnorm'],ok:0,
+     w:'<b>Karistusnorm.</b> Sõna „karistatakse“ on tagajärje pool. Karistusnorm on sekundaarnorm: ta käivitub siis, kui mõne käitumisnormi dispositsioon jäi saabumata.'}]},
+
+  spets:{h:'Milline spetsialiseeritud norm?',items:[
+    {q:'„Isiku kinnipidamine toimub korrakaitseseaduse §-s 46 sätestatud korras.“',
+     o:['viitav','seletav','kitsendav'],ok:0,
+     w:'<b>Viitav.</b> Norm ei korda kinnipidamise korda, vaid saadab teise seaduse juurde. Ilma sinna vaatamata jääb tunnus sisustamata.'},
+    {q:'„Noort kinnipeetavat võib kartserisse paigutada kuni 20 ööpäevaks.“',
+     o:['kitsendav','viitav','seletav'],ok:0,
+     w:'<b>Kitsendav.</b> Ta ei anna oma tagajärge, vaid välistab põhireegli kohaldamise täies ulatuses — ülemmäär langeb 45-lt 20-le.'},
+    {q:'Vangla direktor loeb distsiplinaarkaristuse normi ja näeb tunnust „noor kinnipeetav“. Mida ta peab kõige enne tegema?',
+     o:['otsima, kas mõiste on seaduses defineeritud','hindama ise, kes on noor','küsima kinnipeetava vanust ja otsustama'],ok:0,
+     w:'<b>Otsima legaaldefinitsiooni.</b> See on ka määratlemata mõistele sisu andmise esimene reegel. Vangistusseaduses on definitsioon olemas ja see seob vanuse <em>karistuse täitmisele pööramise ajaga</em>, mitte tänase päevaga.'}]},
+
+  kaalutlus:{h:'Loe sõnastust — kui palju vabadust rakendajal on?',items:[
+    {q:'„Majandushaldusasutus <strong>keeldub</strong> tegevusloa andmisest järgmistel juhtudel: …“',
+     o:['kaalutlusõigust ei ole','otsustusdiskretsioon','valikudiskretsioon'],ok:0,
+     w:'<b>Imperatiivne, kaalutlusõigust ei ole.</b> Tagajärg on ette antud: kui mõni alus esineb, siis keeldutakse. Midagi kaaluda ei ole.'},
+    {q:'„Politsei … <strong>võib</strong> isiku peatada ja teda küsitleda, kui …“',
+     o:['otsustusdiskretsioon','valikudiskretsioon','kaalutlusõigust ei ole'],ok:0,
+     w:'<b>Otsustusdiskretsioon.</b> Ametnik otsustab, kas üldse sekkuda. Ta võib ka mitte sekkuda — aga kaalutlust tuleb põhjendada.'},
+    {q:'„… <strong>võib</strong> kinnipeetavale kohaldada distsiplinaarkaristusi. Need on: 1) noomitus … 4) kartserisse paigutamine …“',
+     o:['valikudiskretsioon','kaalutlusõigust ei ole','otsustusdiskretsioon'],ok:0,
+     w:'<b>Valikudiskretsioon.</b> Tagajärg on valikuline: ÕT1 või ÕT2 või ÕT3. Rakendaja valib karistuse liigi ja määra ning peab valiku põhjendama. (Sõna „võib“ annab siin ka otsustusruumi, aga eksamil oodatakse tagajärje valikulisuse äratundmist.)'},
+    {q:'„Mootorsõidukit <strong>võib</strong> juhtida isik, kellel on vastava kategooria juhtimisõigus …“',
+     o:['kaalutlusõigust ei ole — norm on suunatud eraisikule','otsustusdiskretsioon','valikudiskretsioon'],ok:0,
+     w:'<b>Kaalutlusõigust ei ole.</b> See on lubav dispositsioon, mitte diskretsioon. Diskretsioon saab olla ainult <em>rakendajal</em> — ametnikul või asutusel. Kui „võib“ on suunatud eraisikule, tähendab see luba, mitte kaalumiskohustust. Tüüpviga.'}]},
+
+  realis:{h:'Kuidas õigus siin realiseerub?',items:[
+    {q:'Kinnipeetav Rein täidab vangla sisekorraeeskirju ja allub ametniku seaduslikele korraldustele.',
+     o:['järgimine (täitmine ehk kinnipidamine)','kasutamine','rakendamine'],ok:0,
+     w:'<b>Vahetu realiseerimine kohustuse kaudu.</b> Õigusnormist tuleneb kohustus, mida isik ise täidab. Riigiorganit vaja ei ole.'},
+    {q:'Kinnipeetav esitab taotluse pikaajaliseks kokkusaamiseks, tuginedes vangistusseaduse sättele.',
+     o:['kasutamine','järgimine','rakendamine'],ok:0,
+     w:'<b>Vahetu realiseerimine õiguse kasutamise kaudu.</b> Normist tuleneb isikule subjektiivne õigus ja ta kasutab seda aktiivselt. Nõude alusele tuginemine ongi kasutamine.'},
+    {q:'Vangla direktor määrab kinnipeetavale noomituse.',
+     o:['rakendamine','kasutamine','järgimine'],ok:0,
+     w:'<b>Vahendatud realiseerimine.</b> Riikliku tegevuse eriliik, mis toimub selleks volitatud riigiorgani või ametiisiku kaudu. Sisuks on subsumeerimine: asjaolude võrdlemine koosseisuga ja lõppjärelduse tegemine.'}]},
+
+  aktid:{h:'Üldakt, üksikakt või toiming?',items:[
+    {q:'Vangistusseadus',o:['üldakt','üksikakt','toiming'],ok:0,
+     w:'<b>Üldakt.</b> Abstraktne ja impersonaalne, üldkohustuslik piiramatu arvu juhtude ja isikute suhtes. Õigust loov.'},
+    {q:'Vangla direktori käskkiri kinnipeetav Marek Sõnumi kartserisse paigutamise kohta',
+     o:['üksikakt','üldakt','toiming'],ok:0,
+     w:'<b>Üksikakt.</b> Konkreetne ja individuaalne, õigust rakendav. Antakse üldakti alusel — siin vangistusseaduse alusel.'},
+    {q:'Politsei toimetab isiku korrakaitseseaduse alusel kainenema',
+     o:['toiming','üksikakt','üldakt'],ok:0,
+     w:'<b>Toiming.</b> Rakendamise tulemiks ei ole ainult üksikaktid, vaid ka toimingud. Paberil otsust ei sünni, aga õigust rakendatakse.'}]},
+
+  hier:{h:'Kumb kehtib?',items:[
+    {q:'Ministri määrus näeb ette ühe tagajärje, seadus sama olukorra kohta teise.',
+     o:['seadus — kõrgema astme norm tõrjub madalama','määrus, sest ta on täpsem','see on lünk'],ok:0,
+     w:'<b>Seadus.</b> Formaalne hierarhia: kõrgema astme norm tõrjub madalama. Määrus ei saa seadust muuta. Tegu on vastuoluga, mitte lünga — mõlemad normid reguleerivad sama olukorda ja annavad teineteist välistavad tagajärjed.'},
+    {q:'Määrus on antud, aga seaduses ei ole ühtegi sätet, mis lubaks seda anda.',
+     o:['määrus on õigusvastane — volitusnorm puudub','määrus kehtib, kui sisu on mõistlik','otsustab kohus iga kord eraldi'],ok:0,
+     w:'<b>Õigusvastane.</b> Määruse eelnõu tekst algab preambulist, mis viitab volitus- ehk aluseks olevale normile. Ilma volitusnormita puudub määrusel alus.'}]},
+
+  tolg:{h:'Millist tõlgendusvõtet siin kasutatakse?',items:[
+    {q:'Ametnik alustab sellest, mida sätte sõnad eesti keeles tähendavad, ja vaatab, kas mõni sõna on õigustermin.',
+     o:['grammatiline','süstemaatiline','ajalooline'],ok:0,
+     w:'<b>Grammatiline ehk keeleline.</b> Iga tõlgendamine peaks sellest algama. Õiguskeel on üldkeele erijuht — täpsem, ja täpsuse tagavad terminid.'},
+    {q:'Ametnik vaatab, kus norm seaduses paikneb ja millised sätted on tema ümber ning kuidas nad omavahel seotud on.',
+     o:['süstemaatiline','teleoloogiline','grammatiline'],ok:0,
+     w:'<b>Süstemaatiline.</b> Õigusnormid ei ole korrastamata hunnik, vaid korrastatud regulatsioon. Normi mõistetakse eri paragrahvide tekstide omavaheliste seoste kaudu.'},
+    {q:'Ametnik loeb seaduse eelnõu seletuskirja ja Riigikogu stenogrammi, et aru saada, mida seadusandja tol ajal mõtles.',
+     o:['ajalooline','teleoloogiline','süstemaatiline'],ok:0,
+     w:'<b>Ajalooline</b> (konspektis ka subjektiiv-teleoloogiline). Allikateks on sätte tekst vastuvõtmise ajal, seletuskirjad, stenogrammid, protokollid ja toonane meedia.'},
+    {q:'Kohus küsib, mis on sätte eesmärk täna, ja tugineb haldus- ja kohtupraktikale.',
+     o:['teleoloogiline','ajalooline','grammatiline'],ok:0,
+     w:'<b>Teleoloogiline</b> (konspektis objektiiv-teleoloogiline, ühes kohas ka „eesmärgipärane“). Tähtis on kehtiv õigus ja sätte tähendus ühiskonnas praegu.'}]},
+
+  maar:{h:'Määratlemata mõiste — mis järjekorras?',items:[
+    {q:'Pead sisustama mõiste „oluline oht“. Mis on esimene samm?',
+     o:['vaatan, kas seaduses on legaaldefinitsioon','otsin kohtupraktikat','mõtlen ise, mis tundub oluline'],ok:0,
+     w:'<b>Legaaldefinitsioon.</b> Esimene reegel. Selle mõiste puhul tasub vaadata korrakaitseseadust — seal on „oluline oht“ otse defineeritud. Kui definitsiooni ei ole, küsi, kas on viide mõnes teises aktis olevale definitsioonile.'},
+    {q:'Legaaldefinitsiooni ei ole kuskil. Mis järgmiseks?',
+     o:['haldus- ja kohtupraktika','kommentaarid ja õigusteadlaste kirjutised','oma mõttekäik'],ok:0,
+     w:'<b>Teine reegel: haldus- ja kohtupraktika.</b> Nii sai kursusel sisu ka mõiste „diskrediteerib“ — Riigikohus ütles, et see eeldab avalikkuse hinnangu olulist mõjutamist.'},
+    {q:'Ka praktikat ega kirjandust ei ole. Kas tohin ise mõtlema hakata?',
+     o:['jah, aga mõttekäik tuleb lahendis välja kirjutada','ei, siis tuleb norm kohaldamata jätta','jah, ja seda ei pea põhjendama'],ok:0,
+     w:'<b>Jah — see on neljas reegel.</b> Aga ise mõtlemine on <em>viimane</em>, mitte esimene samm, ja mõttekäik tuleb lahendis lahti kirjutada, sest miski muu seda ei kanna.'}]},
+
+  lunk:{h:'Lünk või vastuolu?',items:[
+    {q:'Haldusmenetluse seadus ei ütle, mis juhtub menetlustähtajaga siis, kui taotlus oli puudustega ja puudused kõrvaldati alles kuu aega hiljem.',
+     o:['lünk','vastuolu','ei kumbki'],ok:0,
+     w:'<b>Lünk.</b> Olukorda reguleerivaid norme on null — seadus vaikib. Lünka ületatakse tõlgendamise teel: analoogia, rõhutamine, vastandamine.'},
+    {q:'Kaks normi reguleerivad sama olukorda ja näevad ette teineteist välistavad tagajärjed.',
+     o:['vastuolu','lünk','ei kumbki'],ok:0,
+     w:'<b>Vastuolu.</b> Norme on kaks või rohkem ja tagajärgi samuti. Ületamise võtted on teised kui lüngal: formaalne hierarhia, ajaline hierarhia ja erinormi eelis üldnormi ees.'},
+    {q:'Kaitseväeteenistuse seadus keelab tegevteenistusse võtta erakonna liiget. Avaliku teenistuse seaduses sellist piirangut teenistujatele ei ole. Kaitseväeteenistuja leiab, et ta on ka avalik teenistuja.',
+     o:['sõltub sellest, kas mõlemad seadused reguleerivad sama olukorda','kindlasti lünk','kindlasti vastuolu'],ok:0,
+     w:'<b>Kursus jätab selle lahtiseks — see ongi harjutus.</b> Arutluskäik: kui lugeda, et mõlemad seadused reguleerivad sama isikut ja annavad teineteist välistavad tagajärjed, on tegu <em>vastuoluga</em> ja lahendus tuleb erinormi eelisest. Kui lugeda, et avaliku teenistuse seadus seda isikut lihtsalt ei kata, siis vastuolu ei tekigi. Eksamil loeb see, et sa küsid kõigepealt, <strong>mitu normi olukorda päriselt reguleerib</strong> — sellest sõltub kogu edasine.'}]}
+};
+
+function buildEx(){
+  document.querySelectorAll('[data-ex]').forEach(host => {
+    const d = EX[host.dataset.ex];
+    if(!d) return;
+    host.classList.add('ex');
+    host.innerHTML = '<span class="exh">' + d.h + '</span>' +
+      d.items.map((it,i) =>
+        '<div class="exi"><p class="exq"><span class="qn">' + (i+1) + '</span>' + it.q + '</p>' +
+        '<div class="exo">' + it.o.map((o,j) => '<button type="button" data-j="' + j + '">' + o + '</button>').join('') + '</div>' +
+        '<div class="exf" hidden></div></div>').join('');
+    host.querySelectorAll('.exi').forEach((card,i) => {
+      const it = d.items[i];
+      const fb = card.querySelector('.exf');
+      card.querySelectorAll('.exo button').forEach(b => b.addEventListener('click', () => {
+        const j = +b.dataset.j;
+        card.querySelectorAll('.exo button').forEach(x => {
+          x.disabled = true;
+          const xj = +x.dataset.j;
+          if(xj === it.ok) x.classList.add('ok');
+          else if(xj === j) x.classList.add('no');
+          else x.classList.add('dim');
+        });
+        fb.innerHTML = it.w;
+        fb.hidden = false;
+      }));
+    });
+    enhance(host);
+  });
+}
+buildEx();
+
+/* ── normi lahtivõtmise harjutus ── */
+document.querySelectorAll('.split').forEach(box => {
+  const spans = Array.from(box.querySelectorAll('.sp'));
+  const out = box.querySelector('.sr');
+  const cycle = {'':'h','h':'t','t':''};
+  spans.forEach(sp => {
+    sp.setAttribute('role','button'); sp.setAttribute('tabindex','0');
+    const go = () => {
+      sp.dataset.pick = cycle[sp.dataset.pick || ''];
+      sp.classList.remove('mark-ok','mark-no');
+      out.textContent = '';
+    };
+    sp.addEventListener('click', go);
+    sp.addEventListener('keydown', e => { if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
+  });
+  box.querySelector('[data-act="check"]').addEventListener('click', () => {
+    let right = 0, done = 0;
+    spans.forEach(sp => {
+      const pick = sp.dataset.pick || '';
+      if(pick) done++;
+      sp.classList.toggle('mark-ok', pick === sp.dataset.ans);
+      sp.classList.toggle('mark-no', !!pick && pick !== sp.dataset.ans);
+      if(pick === sp.dataset.ans) right++;
+    });
+    out.textContent = done === 0
+      ? 'Märgi kõigepealt vähemalt üks osa.'
+      : right + ' / ' + spans.length + ' õigesti.' + (right === spans.length ? ' Kogu norm on lahti võetud.' : ' Rohelise raamiga on õiged, punasega valed.');
+  });
+  box.querySelector('[data-act="reset"]').addEventListener('click', () => {
+    spans.forEach(sp => { sp.dataset.pick = ''; sp.classList.remove('mark-ok','mark-no'); });
+    out.textContent = '';
+  });
+});
+
+enhance(document);
+</script>
